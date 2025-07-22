@@ -3,141 +3,111 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Data Kepegawaian | SIMAK-SD</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Data Kepegawaian | SIMAK SD</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <div class="container">
-      <h1>Data Kepegawaian</h1>
-      <p>Manajemen Data Pegawai Sekolah Dasar</p>
-    </div>
+    <h1>SIMAK SD - Sistem Kepegawaian</h1>
     <nav>
-      <ul class="menu">
-        <li><a href="index.html">Beranda</a></li>
-        <li><a href="kepegawaian.html">Kepegawaian</a></li>
-        <li><a href="manajemen-aset.html">Manajemen Aset</a></li>
-        <li><a href="laporan.html">Laporan</a></li>
-        <li><a href="kontak.html">Kontak</a></li>
-      </ul>
+      <a href="index.html">Beranda</a>
+      <a href="kepegawaian.html" class="active">Kepegawaian</a>
+      <a href="manajemen-aset.html">Manajemen Aset</a>
+      <a href="laporan.html">Laporan</a>
+      <a href="kontak.html">Kontak</a>
     </nav>
   </header>
 
   <main class="container">
-    <section>
-      <h2>Form Input Data Pegawai</h2>
-      <form id="formPegawai">
-        <label>Nama:</label>
-        <input type="text" id="nama" required>
+    <h2>Form Input Data Kepegawaian</h2>
+    <form id="formKepegawaian" class="form-grid">
+      <label>Nama Pegawai</label>
+      <input type="text" name="nama" required>
+      
+      <label>Jabatan</label>
+      <input type="text" name="jabatan" required>
+      
+      <label>Tanggal Masuk</label>
+      <input type="date" name="tanggalMasuk" required onchange="hitungMasaKerja()">
+      
+      <label>Masa Kerja (Tahun)</label>
+      <input type="text" name="masaKerja" readonly>
+      
+      <label>Riwayat Jabatan</label>
+      <textarea name="riwayatJabatan" rows="2"></textarea>
+      
+      <label>Kompensasi / Remunerasi</label>
+      <input type="text" name="kompensasi">
+      
+      <label>Catatan Kasus / Pelanggaran</label>
+      <textarea name="pelanggaran" rows="2"></textarea>
+      
+      <label>Sanksi Pernah Diterima</label>
+      <textarea name="sanksi" rows="2"></textarea>
 
-        <label>NIP/NIK:</label>
-        <input type="text" id="nip" required>
+      <button type="submit">Tambah Data</button>
+    </form>
 
-        <label>Jabatan:</label>
-        <input type="text" id="jabatan" required>
-
-        <label>Tanggal Mulai Bekerja:</label>
-        <input type="date" id="tglMulai" required>
-
-        <label>Catatan Riwayat Jabatan:</label>
-        <textarea id="riwayat"></textarea>
-
-        <label>Kasus/Pelanggaran:</label>
-        <textarea id="pelanggaran"></textarea>
-
-        <label>Sanksi Pernah Diterima:</label>
-        <textarea id="sanksi"></textarea>
-
-        <button type="submit">Simpan Data</button>
-      </form>
-    </section>
-
-    <section>
-      <h2>Daftar Pegawai</h2>
-      <button onclick="exportTableToExcel()">Export ke Excel</button>
-      <div style="overflow-x:auto;">
-        <table id="tabelPegawai">
-          <thead>
-            <tr>
-              <th>Nama</th>
-              <th>NIP/NIK</th>
-              <th>Jabatan</th>
-              <th>Tgl Mulai</th>
-              <th>Masa Kerja</th>
-              <th>Riwayat Jabatan</th>
-              <th>Pelanggaran</th>
-              <th>Sanksi</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </section>
+    <h3>Data Kepegawaian</h3>
+    <button onclick="downloadExcel()">Download Excel</button>
+    <div class="table-container">
+      <table id="tabelKepegawaian">
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th>Jabatan</th>
+            <th>Tgl Masuk</th>
+            <th>Masa Kerja</th>
+            <th>Riwayat Jabatan</th>
+            <th>Kompensasi</th>
+            <th>Pelanggaran</th>
+            <th>Sanksi</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
   </main>
 
   <footer>
-    <div class="container">
-      <p>&copy; 2025 SIMAK-SD. Developed by CV. Mitra Utama Consultindo</p>
-    </div>
+    <p>&copy; 2025 SIMAK SD - Developed by CV. Mitra Utama Consultindo</p>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <script>
-    const form = document.getElementById("formPegawai");
-    const tableBody = document.querySelector("#tabelPegawai tbody");
-
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const nama = document.getElementById("nama").value;
-      const nip = document.getElementById("nip").value;
-      const jabatan = document.getElementById("jabatan").value;
-      const tglMulai = document.getElementById("tglMulai").value;
-      const riwayat = document.getElementById("riwayat").value;
-      const pelanggaran = document.getElementById("pelanggaran").value;
-      const sanksi = document.getElementById("sanksi").value;
-
-      const masaKerja = hitungMasaKerja(tglMulai);
-
-      const newRow = document.createElement("tr");
-      newRow.innerHTML = `
-        <td>${nama}</td>
-        <td>${nip}</td>
-        <td>${jabatan}</td>
-        <td>${tglMulai}</td>
-        <td>${masaKerja}</td>
-        <td>${riwayat}</td>
-        <td>${pelanggaran}</td>
-        <td>${sanksi}</td>
-      `;
-      tableBody.appendChild(newRow);
-
-      form.reset();
-    });
-
-    function hitungMasaKerja(tanggalMulai) {
-      const mulai = new Date(tanggalMulai);
+    function hitungMasaKerja() {
+      const tgl = document.querySelector("input[name='tanggalMasuk']").value;
+      if (!tgl) return;
+      const masuk = new Date(tgl);
       const sekarang = new Date();
-      let tahun = sekarang.getFullYear() - mulai.getFullYear();
-      let bulan = sekarang.getMonth() - mulai.getMonth();
-      if (bulan < 0) {
+      let tahun = sekarang.getFullYear() - masuk.getFullYear();
+      if (
+        sekarang.getMonth() < masuk.getMonth() || 
+        (sekarang.getMonth() === masuk.getMonth() && sekarang.getDate() < masuk.getDate())
+      ) {
         tahun--;
-        bulan += 12;
       }
-      return `${tahun} th ${bulan} bln`;
+      document.querySelector("input[name='masaKerja']").value = tahun;
     }
 
-    function exportTableToExcel() {
-      const table = document.getElementById("tabelPegawai");
-      const tableHTML = table.outerHTML.replace(/ /g, '%20');
-      const filename = 'data_kepegawaian.xls';
-      const dataType = 'application/vnd.ms-excel';
+    document.getElementById('formKepegawaian').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const data = new FormData(this);
+      const tbody = document.querySelector('#tabelKepegawaian tbody');
+      const row = document.createElement('tr');
 
-      const downloadLink = document.createElement("a");
-      document.body.appendChild(downloadLink);
-      downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-      downloadLink.download = filename;
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
+      for (let key of ['nama', 'jabatan', 'tanggalMasuk', 'masaKerja', 'riwayatJabatan', 'kompensasi', 'pelanggaran', 'sanksi']) {
+        const td = document.createElement('td');
+        td.textContent = data.get(key);
+        row.appendChild(td);
+      }
+      tbody.appendChild(row);
+      this.reset();
+    });
+
+    function downloadExcel() {
+      const wb = XLSX.utils.table_to_book(document.getElementById('tabelKepegawaian'), {sheet: "Kepegawaian"});
+      XLSX.writeFile(wb, 'Data_Kepegawaian.xlsx');
     }
   </script>
 </body>
