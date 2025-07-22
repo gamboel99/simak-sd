@@ -1,73 +1,143 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Beranda - SIMAK SD</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIMAK SD - Manajemen Aset</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    let dataAset = [];
+    function tambahAset() {
+      const nama = document.getElementById('nama').value;
+      const jenis = document.getElementById('jenis').value;
+      const jumlah = document.getElementById('jumlah').value;
+      if(nama && jenis && jumlah){
+        dataAset.push({ nama, jenis, jumlah });
+        renderTabel();
+        document.getElementById('formAset').reset();
+      }
+    }
+
+    function renderTabel() {
+      const tbody = document.querySelector('#tabel-aset tbody');
+      tbody.innerHTML = '';
+      dataAset.forEach((item, i) => {
+        const row = `<tr>
+          <td>${i+1}</td>
+          <td>${item.nama}</td>
+          <td>${item.jenis}</td>
+          <td>${item.jumlah}</td>
+        </tr>`;
+        tbody.innerHTML += row;
+      });
+    }
+
+    function exportExcel() {
+      let table = document.getElementById("tabel-aset");
+      let html = table.outerHTML;
+      let url = 'data:application/vnd.ms-excel,' + escape(html);
+      let link = document.createElement('a');
+      link.href = url;
+      link.download = 'data_aset.xls';
+      link.click();
+    }
+  </script>
   <style>
-    body {
-      background-color: #f4f7f9;
-      font-family: 'Segoe UI', sans-serif;
+    .form-group {
+      margin-bottom: 1rem;
     }
-    header {
-      background-color: #005a9e;
-      color: white;
-      padding: 1rem;
+    label {
+      font-weight: bold;
     }
-    nav a.nav-link {
-      color: white;
-      margin-right: 1rem;
+    input, select {
+      padding: 0.5rem;
+      width: 100%;
+      margin-top: 0.25rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
     }
-    footer {
-      background-color: #003f6b;
-      color: #ddd;
-      padding: 1rem;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+    }
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 0.75rem;
       text-align: center;
     }
-    .container-box {
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      padding: 2rem;
-      margin-top: 2rem;
+    table th {
+      background: #f0f0f0;
     }
-    .form-label {
-      font-weight: 500;
+    .btn {
+      padding: 0.5rem 1rem;
+      background: #1a73e8;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: #155ab6;
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="container d-flex justify-content-between align-items-center">
-      <h4 class="mb-0">SIMAK SD</h4>
-      <nav>
-        <a href="index.html" class="nav-link d-inline">Beranda</a>
-        <a href="kepegawaian.html" class="nav-link d-inline">Kepegawaian</a>
-        <a href="aset.html" class="nav-link d-inline">Manajemen Aset</a>
-        <a href="laporan.html" class="nav-link d-inline">Laporan</a>
-        <a href="kontak.html" class="nav-link d-inline">Kontak</a>
-      </nav>
-    </div>
+    <h1>SIMAK SD</h1>
+    <p>Manajemen Aset Sekolah Dasar</p>
   </header>
 
-  <main class="container mt-4">
-    <div class="container-box">
-      <h3 class="mb-3">Selamat Datang di Sistem Informasi Manajemen Kepegawaian dan Aset Sekolah Dasar</h3>
-      <p class="lead">Sistem ini membantu pengelolaan data guru, staf, aset, laporan hingga komunikasi kontak secara efisien, aman, dan terintegrasi.</p>
-      <hr>
-      <h5>Fitur Utama:</h5>
-      <ul>
-        <li>Manajemen Data Kepegawaian</li>
-        <li>Pencatatan dan Pemantauan Aset Sekolah</li>
-        <li>Laporan Otomatis dan Ekspor Excel</li>
-        <li>Kontak dan Komunikasi Internal</li>
-      </ul>
-    </div>
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="kepegawaian.html">Kepegawaian</a>
+    <a href="aset.html">Manajemen Aset</a>
+    <a href="laporan.html">Laporan</a>
+    <a href="kontak.html">Kontak</a>
+  </nav>
+
+  <main class="container">
+    <h2>Form Input Aset Sekolah</h2>
+    <form id="formAset" onsubmit="event.preventDefault(); tambahAset();">
+      <div class="form-group">
+        <label for="nama">Nama Aset</label>
+        <input type="text" id="nama" required>
+      </div>
+      <div class="form-group">
+        <label for="jenis">Jenis Aset</label>
+        <select id="jenis" required>
+          <option value="">--Pilih Jenis--</option>
+          <option value="Elektronik">Elektronik</option>
+          <option value="Meubelair">Meubelair</option>
+          <option value="Buku">Buku</option>
+          <option value="Lainnya">Lainnya</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="jumlah">Jumlah</label>
+        <input type="number" id="jumlah" required>
+      </div>
+      <button type="submit" class="btn">Tambah Aset</button>
+    </form>
+
+    <button onclick="exportExcel()" class="btn" style="margin-top:1rem;">Unduh Excel</button>
+
+    <table id="tabel-aset">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Nama Aset</th>
+          <th>Jenis</th>
+          <th>Jumlah</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
   </main>
 
   <footer>
-    <p>Developed by CV. Mitra Utama Consultindo</p>
+    <p>&copy; 2025 SIMAK SD</p>
+    <small>Developed by CV. Mitra Utama Consultindo</small>
   </footer>
 </body>
 </html>
