@@ -1,73 +1,125 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SIMAK SD - Beranda</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f4f6f8;
-  color: #333;
-  line-height: 1.6;
-}
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
+    }
 
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 1rem 2rem;
-}
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+    }
 
-header {
-  background-color: #007e6a;
-  color: white;
-  padding: 1rem 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
+    header {
+      background-color: #007e6a;
+      color: white;
+      padding: 1rem 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
 
-header h1 {
-  float: left;
-}
+    header h1 {
+      float: left;
+    }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: flex-end;
-}
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: flex-end;
+    }
 
-nav li {
-  margin-left: 20px;
-}
+    nav li {
+      margin-left: 20px;
+    }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-nav a.active, nav a:hover {
-  text-decoration: underline;
-}
+    nav a.active, nav a:hover {
+      text-decoration: underline;
+    }
 
-.hero {
-  background: linear-gradient(to right, #007e6a, #00b894);
-  color: white;
-  padding: 3rem 0;
-  text-align: center;
-}
+    .hero {
+      background: linear-gradient(to right, #007e6a, #00b894);
+      color: white;
+      padding: 3rem 0;
+      text-align: center;
+    }
 
-.content {
-  margin: 2rem 0;
-}
+    .content {
+      margin: 2rem 0;
+    }
 
-.content h3 {
-  margin-bottom: 0.5rem;
-  color: #007e6a;
-}
+    .content h3 {
+      margin-bottom: 0.5rem;
+      color: #007e6a;
+    }
 
-footer {
-  background-color: #003d33;
-  color: white;
-  text-align: center;
-  padding: 1rem 0;
-  margin-top: 2rem;
-}
+    footer {
+      background-color: #003d33;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <h1>SIMAK SD</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html" class="active">Beranda</a></li>
+          <li><a href="kepegawaian.html">Kepegawaian</a></li>
+          <li><a href="manajemen-aset.html">Manajemen Aset</a></li>
+          <li><a href="laporan.html">Laporan</a></li>
+          <li><a href="kontak.html">Kontak</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h2>Selamat Datang di SIMAK SD</h2>
+      <p>Sistem Informasi Manajemen Administrasi Kepegawaian dan Aset Sekolah Dasar</p>
+    </div>
+  </section>
+
+  <section class="content container">
+    <h3>Visi</h3>
+    <p>Menjadi sistem manajemen digital terpercaya untuk mendukung tata kelola sekolah dasar yang transparan dan akuntabel.</p>
+
+    <h3>Misi</h3>
+    <ul>
+      <li>Menyediakan fitur manajemen kepegawaian yang praktis</li>
+      <li>Memudahkan pencatatan aset sekolah</li>
+      <li>Mendukung pelaporan dan monitoring data yang efisien</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>Developed by <strong>CV. Mitra Utama Consultindo</strong></p>
+  </footer>
+
+</body>
+</html>
