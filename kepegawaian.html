@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIMAK-SD | Kepegawaian</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.0/package/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>SIMAK-SD</h1>
+      <nav>
+        <ul class="menu">
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="kepegawaian.html" class="active">Kepegawaian</a></li>
+          <li><a href="aset.html">Manajemen Aset</a></li>
+          <li><a href="laporan.html">Laporan</a></li>
+          <li><a href="kontak.html">Kontak</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="container">
+      <h2>Data Kepegawaian</h2>
+      <p>Formulir berikut digunakan untuk input data pegawai sekolah.</p>
+      <form class="form" id="formPegawai">
+        <label>Nama Lengkap:<br><input type="text" name="nama" required></label><br>
+        <label>NIP/NUPTK:<br><input type="text" name="nip"></label><br>
+        <label>Jabatan:<br><input type="text" name="jabatan"></label><br>
+        <label>Jenis Kelamin:<br>
+          <select name="jk">
+            <option value="L">Laki-laki</option>
+            <option value="P">Perempuan</option>
+          </select>
+        </label><br>
+        <label>Tanggal Lahir:<br><input type="date" name="tgl_lahir"></label><br>
+        <button type="submit">Simpan Data</button>
+      </form>
+
+      <h3>Daftar Pegawai</h3>
+      <button onclick="downloadExcel()">Download Excel</button>
+      <table id="tabelPegawai" border="1" style="margin-top: 1rem; width: 100%">
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th>NIP/NUPTK</th>
+            <th>Jabatan</th>
+            <th>JK</th>
+            <th>Tanggal Lahir</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 SIMAK-SD. Developed by CV. Mitra Utama Consultindo</p>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('formPegawai');
+    const tbody = document.querySelector('#tabelPegawai tbody');
+    const dataPegawai = [];
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      const data = {
+        nama: fd.get('nama'),
+        nip: fd.get('nip'),
+        jabatan: fd.get('jabatan'),
+        jk: fd.get('jk'),
+        tgl: fd.get('tgl_lahir')
+      };
+      dataPegawai.push(data);
+
+      const row = tbody.insertRow();
+      row.insertCell(0).innerText = data.nama;
+      row.insertCell(1).innerText = data.nip;
+      row.insertCell(2).innerText = data.jabatan;
+      row.insertCell(3).innerText = data.jk;
+      row.insertCell(4).innerText = data.tgl;
+
+      form.reset();
+    });
+
+    function downloadExcel() {
+      const ws = XLSX.utils.json_to_sheet(dataPegawai);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Pegawai');
+      XLSX.writeFile(wb, 'data-pegawai.xlsx');
+    }
+  </script>
+</body>
+</html>
