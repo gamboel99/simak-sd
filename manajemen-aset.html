@@ -1,107 +1,68 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Manajemen Aset</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css"/>
 </head>
-
 <body>
   <header>
-    <h1>Sistem Manajemen Aset</h1>
+    <h1>SIMAK SD | Manajemen Aset</h1>
   </header>
 
   <nav>
-    <ul class="menu">
-      <li><a href="index.html">Beranda</a></li>
-      <li><a href="kepegawaian.html">Kepegawaian</a></li>
-      <li><a class="active" href="manajemen-aset.html">Manajemen Aset</a></li>
-      <li><a href="laporan.html">Laporan</a></li>
-      <li><a href="kontak.html">Kontak</a></li>
-    </ul>
+    <a href="kepegawaian.html">Kepegawaian</a>
+    <a href="manajemen-aset.html" class="active">Manajemen Aset</a>
+    <a href="laporan.html">Laporan</a>
+    <a href="kontak.html">Kontak</a>
   </nav>
 
   <div class="container">
-    <h2>Form Manajemen Aset Sekolah</h2>
-    <form id="asetForm">
-      <div class="form-grid">
-        <label for="idBarang">ID Barang</label>
-        <input type="text" id="idBarang" name="idBarang" required>
-
-        <label for="namaBarang">Nama Barang</label>
-        <input type="text" id="namaBarang" name="namaBarang" required>
-
-        <label for="kategori">Kategori</label>
-        <input type="text" id="kategori" name="kategori">
-
-        <label for="tglPerolehan">Tanggal Perolehan</label>
-        <input type="date" id="tglPerolehan" name="tglPerolehan">
-
-        <label for="umurEkonomis">Umur Ekonomis (tahun)</label>
-        <input type="number" id="umurEkonomis" name="umurEkonomis">
-
-        <label for="penyusutan">Nilai Penyusutan per Tahun</label>
-        <input type="number" id="penyusutan" name="penyusutan">
-
-        <label for="status">Status</label>
-        <select id="status" name="status">
-          <option value="milik">Milik</option>
-          <option value="sewa">Sewa</option>
-          <option value="pinjam">Pinjam</option>
-        </select>
-
-        <label for="kondisi">Kondisi</label>
-        <select id="kondisi" name="kondisi">
-          <option value="baik">Baik</option>
-          <option value="rusak">Rusak</option>
-          <option value="hilang">Hilang</option>
-          <option value="dalam perbaikan">Dalam Perbaikan</option>
-          <option value="dipinjam">Dipinjam</option>
-        </select>
-
-        <label for="dipinjamOleh">Dipinjam Oleh</label>
-        <input type="text" id="dipinjamOleh" name="dipinjamOleh">
-
-        <label for="penanggungJawab">Penanggung Jawab</label>
-        <input type="text" id="penanggungJawab" name="penanggungJawab">
-
-        <label for="keterangan">Keterangan</label>
-        <textarea id="keterangan" name="keterangan"></textarea>
-      </div>
-      <button type="submit">Simpan Data</button>
-      <button type="button" onclick="exportToExcel()">Download Excel</button>
+    <h2>Form Input Manajemen Aset Sekolah</h2>
+    <form class="form-grid">
+      <label>ID Barang:</label><input type="text" name="id_barang" />
+      <label>Nama Barang:</label><input type="text" name="nama_barang" />
+      <label>Jenis Barang:</label><input type="text" name="jenis_barang" />
+      <label>Tanggal Perolehan:</label><input type="date" name="tanggal" />
+      <label>Umur Ekonomis (tahun):</label><input type="number" name="umur" />
+      <label>Metode Penyusutan:</label>
+      <select name="penyusutan">
+        <option>Garis Lurus</option>
+        <option>Saldo Menurun</option>
+      </select>
+      <label>Status:</label>
+      <select name="status">
+        <option>Sewa</option>
+        <option>Beli</option>
+        <option>Pinjam</option>
+      </select>
+      <label>Kondisi:</label>
+      <select name="kondisi">
+        <option>Ada</option>
+        <option>Hilang</option>
+        <option>Rusak</option>
+        <option>Dipinjam</option>
+        <option>Dalam Perbaikan</option>
+      </select>
+      <label>Jika dipinjam, oleh siapa:</label><input type="text" name="dipinjam_oleh" />
+      <label>Penanggung Jawab:</label><input type="text" name="penanggung_jawab" />
+      <label>Perlu Peremajaan?:</label>
+      <select name="peremajaan">
+        <option>Tidak</option>
+        <option>Segera</option>
+      </select>
+      <label>Butuh Restok?:</label>
+      <select name="restok">
+        <option>Tidak</option>
+        <option>Ya</option>
+      </select>
     </form>
-
-    <div class="table-container">
-      <table id="asetTable">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nama</th>
-            <th>Kategori</th>
-            <th>Tgl Perolehan</th>
-            <th>Umur Ekonomis</th>
-            <th>Penyusutan</th>
-            <th>Status</th>
-            <th>Kondisi</th>
-            <th>Dipinjam Oleh</th>
-            <th>Penanggung Jawab</th>
-            <th>Keterangan</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-    </div>
+    <button>🖫 Simpan ke Excel</button>
   </div>
 
   <footer>
-    <p>&copy; 2025 Sistem Informasi Sekolah | SDI Ulumiyah Al Makruf</p>
+    &copy; 2025 SDI Ulumiyah Al-Makruf | Sistem Manajemen Aset Sekolah
   </footer>
-
-  <script src="aset.js"></script>
 </body>
-
 </html>
