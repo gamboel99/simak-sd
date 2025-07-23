@@ -1,70 +1,94 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Manajemen Aset Sekolah</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manajemen Aset</title>
+  <link rel="stylesheet" href="style.css">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
+      background-color: #f1f4f6;
       margin: 0;
       padding: 0;
-      background-color: #f4f8fb;
     }
+
     header, footer {
-      background-color: #007e6a;
+      background-color: #005f73;
       color: white;
       padding: 1rem;
       text-align: center;
     }
+
     .container {
-      max-width: 960px;
+      max-width: 1000px;
       margin: 2rem auto;
-      background-color: white;
-      border-radius: 10px;
+      background: white;
       padding: 2rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
+
     h2 {
       text-align: center;
-      color: #007e6a;
+      color: #0077b6;
     }
+
     form {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 1rem;
+      margin-top: 1.5rem;
     }
+
     label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
+      font-weight: 600;
     }
+
     input, select {
       width: 100%;
       padding: 8px;
-      border-radius: 6px;
+      margin-top: 4px;
+      border-radius: 8px;
       border: 1px solid #ccc;
     }
+
     .full-width {
-      grid-column: span 2;
+      grid-column: 1 / -1;
     }
-    .button {
-      background-color: #007e6a;
+
+    .button-group {
+      text-align: right;
+      margin-top: 1rem;
+    }
+
+    button {
+      background-color: #0077b6;
       color: white;
-      padding: 0.75rem;
+      padding: 0.6rem 1.5rem;
       border: none;
       border-radius: 6px;
       cursor: pointer;
-      font-size: 16px;
-      margin-top: 1rem;
     }
-    .button:hover {
-      background-color: #005f52;
+
+    button:hover {
+      background-color: #005f73;
     }
-    .note {
-      margin-top: 10px;
-      font-size: 0.9rem;
-      color: #777;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 0.75rem;
+      text-align: left;
+    }
+
+    th {
+      background-color: #caf0f8;
     }
   </style>
 </head>
@@ -75,91 +99,116 @@
 </header>
 
 <div class="container">
-  <h2>Input Data Aset</h2>
+  <h2>Tambah Aset Baru</h2>
   <form id="form-aset">
     <div>
       <label for="idBarang">ID Barang</label>
-      <input type="text" id="idBarang" name="idBarang" required>
+      <input type="text" id="idBarang" required>
     </div>
     <div>
-      <label for="kategori">Kategori Barang</label>
-      <select id="kategori" name="kategori">
-        <option>Elektronik</option>
-        <option>Meubelair</option>
-        <option>Alat Tulis</option>
-        <option>Prasarana</option>
-      </select>
+      <label for="kategori">Kategori</label>
+      <input type="text" id="kategori" required>
     </div>
     <div>
       <label for="namaBarang">Nama Barang</label>
-      <input type="text" id="namaBarang" name="namaBarang" required>
+      <input type="text" id="namaBarang" required>
     </div>
     <div>
       <label for="status">Status</label>
-      <select id="status" name="status">
-        <option>Beli</option>
-        <option>Sewa</option>
-        <option>Pinjam</option>
+      <select id="status">
+        <option value="Beli">Beli</option>
+        <option value="Sewa">Sewa</option>
+        <option value="Pinjam">Pinjam</option>
       </select>
     </div>
     <div>
       <label for="umur">Umur Ekonomis (tahun)</label>
-      <input type="number" id="umur" name="umur" min="0" required>
+      <input type="number" id="umur" required>
     </div>
     <div>
-      <label for="hargaBeli">Harga Beli (Rp)</label>
-      <input type="number" id="hargaBeli" name="hargaBeli" min="0" required>
+      <label for="harga">Harga Beli</label>
+      <input type="number" id="harga" required>
     </div>
     <div>
-      <label for="penyusutan">Penyusutan (Rp/Tahun)</label>
-      <input type="text" id="penyusutan" name="penyusutan" readonly>
+      <label for="penyusutan">Penyusutan / Tahun</label>
+      <input type="number" id="penyusutan" readonly>
     </div>
     <div>
       <label for="keterangan">Keterangan</label>
-      <select id="keterangan" name="keterangan">
-        <option>Ada</option>
-        <option>Hilang</option>
-        <option>Rusak</option>
-        <option>Dalam Perbaikan</option>
-        <option>Dipinjam</option>
+      <select id="keterangan">
+        <option value="Ada">Ada</option>
+        <option value="Hilang">Hilang</option>
+        <option value="Rusak">Rusak</option>
+        <option value="Dalam Perbaikan">Dalam Perbaikan</option>
+        <option value="Dipinjam">Dipinjam</option>
       </select>
     </div>
     <div>
       <label for="dipinjamOleh">Dipinjam Oleh</label>
-      <input type="text" id="dipinjamOleh" name="dipinjamOleh">
+      <input type="text" id="dipinjamOleh">
     </div>
     <div>
       <label for="penanggungJawab">Penanggung Jawab</label>
-      <input type="text" id="penanggungJawab" name="penanggungJawab">
-    </div>
-    <div>
-      <label for="tanda">Perlu Peremajaan / Tambahan?</label>
-      <input type="text" id="tanda" name="tanda" readonly>
+      <input type="text" id="penanggungJawab">
     </div>
 
-    <div class="full-width">
-      <button type="button" class="button" onclick="hitung()">Hitung Penyusutan</button>
+    <div class="full-width button-group">
+      <button type="submit">Simpan Aset</button>
     </div>
   </form>
 
-  <div class="note">* Penyusutan = Harga Beli ÷ Umur Ekonomis</div>
+  <table id="tabel-aset">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Kategori</th>
+        <th>Nama</th>
+        <th>Status</th>
+        <th>Umur</th>
+        <th>Harga</th>
+        <th>Penyusutan</th>
+        <th>Keterangan</th>
+        <th>Dipinjam Oleh</th>
+        <th>Penanggung Jawab</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 </div>
 
 <footer>
-  <p>© 2025 Sistem Kepegawaian & Manajemen Aset SD</p>
+  <p>&copy; 2025 SIMAK - Sistem Informasi Manajemen Kepegawaian Sekolah</p>
 </footer>
 
 <script>
-function hitung() {
-  const harga = parseFloat(document.getElementById("hargaBeli").value);
-  const umur = parseFloat(document.getElementById("umur").value);
-  const penyusutan = harga && umur ? (harga / umur).toFixed(2) : 0;
-  document.getElementById("penyusutan").value = penyusutan;
+  const form = document.getElementById('form-aset');
+  const tabel = document.querySelector('#tabel-aset tbody');
 
-  // Peremajaan otomatis
-  const tanda = umur <= 1 ? "BUTUH PENGADAAN BARU" : "Masih Layak Pakai";
-  document.getElementById("tanda").value = tanda;
-}
+  form.addEventListener('input', () => {
+    const harga = parseFloat(document.getElementById('harga').value);
+    const umur = parseFloat(document.getElementById('umur').value);
+    const penyusutan = harga && umur ? (harga / umur).toFixed(2) : '';
+    document.getElementById('penyusutan').value = penyusutan;
+  });
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const data = [
+      'idBarang', 'kategori', 'namaBarang', 'status',
+      'umur', 'harga', 'penyusutan', 'keterangan',
+      'dipinjamOleh', 'penanggungJawab'
+    ].map(id => document.getElementById(id).value);
+
+    const row = document.createElement('tr');
+    data.forEach(val => {
+      const cell = document.createElement('td');
+      cell.textContent = val;
+      row.appendChild(cell);
+    });
+    tabel.appendChild(row);
+    form.reset();
+    document.getElementById('penyusutan').value = '';
+  });
 </script>
 
 </body>
