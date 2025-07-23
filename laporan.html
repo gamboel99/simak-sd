@@ -5,6 +5,74 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Laporan Bulanan | e-Sekolah</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #f5f7fa;
+    }
+    header, footer {
+      background-color: #004b80;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+    nav {
+      background-color: #0073b7;
+      padding: 0.5rem;
+    }
+    nav ul.menu {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul.menu li {
+      margin: 0 1rem;
+    }
+    nav ul.menu li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav ul.menu li a.active {
+      text-decoration: underline;
+    }
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 2rem;
+    }
+    .hero {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .info-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+    }
+    .card {
+      flex: 1;
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      min-width: 300px;
+    }
+    section {
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-top: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    footer {
+      margin-top: 3rem;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -48,25 +116,25 @@
       </div>
     </div>
 
-    <section style="margin-top: 3rem;">
+    <section>
       <h3>Rekomendasi Perbaikan Umum</h3>
       <p>
         Diperlukan peningkatan kedisiplinan absensi guru dan peremajaan aset secara berkala. Pengajuan dana mendesak sudah diajukan ke bagian keuangan untuk direalisasikan pada bulan depan.
       </p>
     </section>
 
-    <section style="margin-top: 3rem;">
+    <section>
       <h3>Legalitas Laporan</h3>
-      <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 250px;">
           <p><strong>Disahkan Oleh:</strong></p>
           <p>Kepala Sekolah</p>
           <br><br>
           <p><strong><u>Drs. Ahmad Fauzi</u></strong></p>
           <p>NIP. 19651112 198703 1 001</p>
         </div>
-        <div>
-          <img src="barcode-sample.png" alt="Barcode Legalitas" style="width: 120px; height: auto;">
+        <div style="flex: 1; text-align: right;">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAAAeCAYAAABY5qKfAAABZElEQVRoge3XQQ7CMAwE0BdRUfwXXqH5qtRFUkZXLoNv5opZT+zI8PhTAAAAAAAAAAAAwCV2yn8nPmyqvW6n53kWyM+vb13eRrYXu7xOhDKX1va7el3r8q26/X1XxquzJ53RlzPZB17X8kC+cvZjsF1y+GOblcZbGbLXzaz+Q23WsyXtxje6vj6rZ3/AbcPZ7N7zVWYTepnWffOl+9WpdpNbLbZz2dr7P76hHHrdsyDZ/NzbnMGztmzv3cu73v8umD+cDJY9vcYP7D7Rrty0nbF1Znp1nc/Nt7Xy+lrePH1no4bZyb6TbbP0mG5X16c8x6Nb9TgQAAAAAAAAAAAAD8uAfh6N1OXmWyEwAAAABJRU5ErkJggg==" alt="Barcode Dummy" width="150" />
         </div>
       </div>
     </section>
