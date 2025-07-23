@@ -6,37 +6,57 @@
   <title>Data Kepegawaian - e-Sekolah</title>
   <link rel="stylesheet" href="style.css" />
   <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+    }
+    header, footer {
+      background-color: #d71920;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+    }
+    .menu {
+      display: flex;
+      list-style: none;
+      background-color: #fff;
+      padding: 10px;
+      justify-content: center;
+    }
+    .menu li {
+      margin: 0 15px;
+    }
+    .menu li a {
+      text-decoration: none;
+      color: #d71920;
+      font-weight: bold;
+    }
     .form-card {
       background: #fff;
       padding: 20px;
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      max-width: 900px;
+      max-width: 1000px;
       margin: 0 auto 30px auto;
     }
-
     .form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 15px;
     }
-
     .form-grid label {
       font-weight: bold;
     }
-
-    .form-grid input {
+    .form-grid input, .form-grid select {
       padding: 8px;
       border-radius: 6px;
       border: 1px solid #ccc;
       width: 100%;
     }
-
     .form-actions {
       margin-top: 20px;
       text-align: right;
     }
-
     .form-actions button {
       background-color: #007e6a;
       color: white;
@@ -46,32 +66,23 @@
       cursor: pointer;
       margin-left: 10px;
     }
-
-    .form-actions button:hover {
-      background-color: #005f4f;
-    }
-
     .table-container {
       overflow-x: auto;
     }
-
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 10px;
     }
-
     table th, table td {
       border: 1px solid #ccc;
       padding: 10px;
       text-align: left;
     }
-
     table th {
       background-color: #007e6a;
       color: white;
     }
-
     h2 {
       text-align: center;
       color: #333;
@@ -82,7 +93,6 @@
   <header>
     <h1>Sistem Kepegawaian Sekolah</h1>
   </header>
-
   <nav>
     <ul class="menu">
       <li><a href="index.html">Beranda</a></li>
@@ -92,40 +102,44 @@
       <li><a href="kontak.html">Kontak</a></li>
     </ul>
   </nav>
-
   <div class="container">
     <h2>Formulir Data Pegawai</h2>
     <div class="form-card">
       <form id="formPegawai">
         <div class="form-grid">
-          <div>
-            <label>Nama Lengkap</label>
-            <input type="text" name="nama" required>
+          <div><label>Nama Lengkap</label><input type="text" name="nama" required></div>
+          <div><label>NIP</label><input type="text" name="nip"></div>
+          <div><label>Jabatan</label><input type="text" name="jabatan"></div>
+          <div><label>Status Kepegawaian</label>
+            <select name="status_kepegawaian">
+              <option value="PNS">PNS</option>
+              <option value="P3K">P3K</option>
+              <option value="Guru Tetap Yayasan">Guru Tetap Yayasan</option>
+              <option value="Guru Honorer">Guru Honorer</option>
+              <option value="Magang">Magang</option>
+            </select>
           </div>
-          <div>
-            <label>NIP</label>
-            <input type="text" name="nip">
+          <div><label>Tanggal Masuk</label><input type="date" name="tgl_masuk" id="tglMasuk" required></div>
+          <div><label>Tanggal Resign/Pindah</label><input type="date" name="tgl_resign"></div>
+          <div><label>Masa Kerja (tahun)</label><input type="text" id="masaKerja" readonly></div>
+          <div><label>Status</label>
+            <select name="status">
+              <option value="Aktif">Aktif</option>
+              <option value="Resign">Resign</option>
+              <option value="Pindah">Pindah</option>
+            </select>
           </div>
-          <div>
-            <label>Jabatan</label>
-            <input type="text" name="jabatan">
-          </div>
-          <div>
-            <label>Tanggal Masuk</label>
-            <input type="date" name="tgl_masuk" id="tglMasuk" required>
-          </div>
-          <div>
-            <label>Masa Kerja (tahun)</label>
-            <input type="text" id="masaKerja" readonly>
-          </div>
-          <div>
-            <label>Catatan Kasus / Sanksi</label>
-            <input type="text" name="catatan">
-          </div>
-          <div style="grid-column: span 2;">
-            <label>Keterangan</label>
-            <input type="text" name="keterangan">
-          </div>
+          <div><label>Gaji (Rp)</label><input type="number" name="gaji"></div>
+          <div><label>Jumlah Cuti Tahunan</label><input type="number" name="cuti"></div>
+          <div><label>Cuti Diambil</label><input type="number" name="cuti_diambil"></div>
+          <div><label>Prestasi</label><input type="text" name="prestasi"></div>
+          <div><label>Jumlah Keluarga</label><input type="number" name="keluarga"></div>
+          <div><label>Tanggungan di Sekolah</label><input type="text" name="tanggungan"></div>
+          <div><label>Alamat</label><input type="text" name="alamat"></div>
+          <div><label>No. Telepon</label><input type="tel" name="telp"></div>
+          <div><label>Email</label><input type="email" name="email"></div>
+          <div style="grid-column: span 2;"><label>Catatan Kasus / Sanksi</label><input type="text" name="catatan"></div>
+          <div style="grid-column: span 2;"><label>Keterangan</label><input type="text" name="keterangan"></div>
         </div>
         <div class="form-actions">
           <button type="submit">Simpan</button>
@@ -133,75 +147,9 @@
         </div>
       </form>
     </div>
-
-    <h2>Data Pegawai</h2>
-    <div class="table-container">
-      <table id="tabelPegawai">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Nama</th>
-            <th>NIP</th>
-            <th>Jabatan</th>
-            <th>Tgl Masuk</th>
-            <th>Masa Kerja</th>
-            <th>Catatan</th>
-            <th>Keterangan</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
   </div>
-
   <footer>
-    <p>&copy; 2025 e-Sekolah | SIMAK-SD Develope By CV. Mitra Utama Consultindo</p>
+    <p>&copy; 2025 e-Sekolah | SIMAK-SD Develop By CV. Mitra Utama Consultindo</p>
   </footer>
-
-  <script>
-    const form = document.getElementById('formPegawai');
-    const tabel = document.querySelector('#tabelPegawai tbody');
-    const tglMasuk = document.getElementById('tglMasuk');
-    const masaKerjaInput = document.getElementById('masaKerja');
-
-    tglMasuk.addEventListener('change', () => {
-      const masuk = new Date(tglMasuk.value);
-      const now = new Date();
-      let tahun = now.getFullYear() - masuk.getFullYear();
-      if (
-        now.getMonth() < masuk.getMonth() || 
-        (now.getMonth() === masuk.getMonth() && now.getDate() < masuk.getDate())
-      ) {
-        tahun--;
-      }
-      masaKerjaInput.value = tahun >= 0 ? tahun : 0;
-    });
-
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const data = new FormData(form);
-      const row = tabel.insertRow();
-      row.insertCell().textContent = tabel.rows.length;
-      row.insertCell().textContent = data.get('nama');
-      row.insertCell().textContent = data.get('nip');
-      row.insertCell().textContent = data.get('jabatan');
-      row.insertCell().textContent = data.get('tgl_masuk');
-      row.insertCell().textContent = document.getElementById('masaKerja').value;
-      row.insertCell().textContent = data.get('catatan');
-      row.insertCell().textContent = data.get('keterangan');
-      form.reset();
-      masaKerjaInput.value = '';
-    });
-
-    function downloadExcel() {
-      const table = document.getElementById("tabelPegawai");
-      const html = table.outerHTML.replace(/ /g, '%20');
-      const filename = 'Data_Kepegawaian.xls';
-      const link = document.createElement('a');
-      link.href = 'data:application/vnd.ms-excel,' + html;
-      link.download = filename;
-      link.click();
-    }
-  </script>
 </body>
 </html>
