@@ -136,30 +136,6 @@
       </table>
     </div>
   </div>
-  
-<!-- Tambahkan ini sebelum </body> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<script>
-  function unduhExcel() {
-    try {
-      const workbook = XLSX.utils.book_new();
-
-      const tabelKepegawaian = document.getElementById("tabelKepegawaian");
-      const wsKepegawaian = XLSX.utils.table_to_sheet(tabelKepegawaian);
-      XLSX.utils.book_append_sheet(workbook, wsKepegawaian, "Kepegawaian");
-
-      const tabelAset = document.getElementById("tabelAset");
-      const wsAset = XLSX.utils.table_to_sheet(tabelAset);
-      XLSX.utils.book_append_sheet(workbook, wsAset, "Aset");
-
-      XLSX.writeFile(workbook, "Laporan_SIMAK_SD.xlsx");
-    } catch (error) {
-      alert("Gagal mengunduh laporan Excel. Pastikan koneksi internet tersedia dan tidak ada pemblokiran script.");
-      console.error(error);
-    }
-  }
-</script>
-  
     <div class="card legal">
       <h2><i class="bi bi-file-earmark-text"></i> Legalitas & Tanda Tangan</h2>
       <p>Disahkan oleh:</p>
