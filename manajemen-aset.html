@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manajemen Aset | SIMAK-SD</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>SIMAK-SD</h1>
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="kepegawaian.html">Kepegawaian</a></li>
+        <li><a href="manajemen-aset.html" class="active">Manajemen Aset</a></li>
+        <li><a href="laporan.html">Laporan</a></li>
+        <li><a href="kontak.html">Kontak</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h2>Manajemen Aset Sekolah</h2>
+    <form id="asetForm" class="form-grid">
+      <div><label>ID Barang</label><input type="text" name="id" required></div>
+      <div><label>Nama Barang</label><input type="text" name="nama" required></div>
+      <div>
+        <label>Kategori</label>
+        <select name="kategori" required>
+          <option value="">Pilih</option>
+          <option>Elektronik</option>
+          <option>Peralatan Kelas</option>
+          <option>Inventaris Kantor</option>
+        </select>
+      </div>
+      <div>
+        <label>Status</label>
+        <select name="status" required>
+          <option value="">Pilih</option>
+          <option>Sewa</option>
+          <option>Beli</option>
+          <option>Pinjam</option>
+        </select>
+      </div>
+      <div><label>Harga Beli (Rp)</label><input type="number" name="harga" required></div>
+      <div><label>Umur Ekonomis (tahun)</label><input type="number" name="umur" required></div>
+      <div><label>Penyusutan / thn</label><input type="text" name="penyusutan" readonly></div>
+      <div>
+        <label>Keterangan</label>
+        <select name="keterangan" required>
+          <option value="">Pilih</option>
+          <option>Ada</option>
+          <option>Hilang</option>
+          <option>Rusak</option>
+          <option>Dipinjam</option>
+          <option>Dalam Perbaikan</option>
+        </select>
+      </div>
+      <div><label>Dipinjam Oleh</label><input type="text" name="dipinjam" placeholder="Kosongkan jika tidak dipinjam"></div>
+      <div><label>Penanggung Jawab</label><input type="text" name="penanggung" required></div>
+      <div class="form-actions" style="grid-column: span 2;">
+        <button type="button" onclick="tambahAset()">Tambah Aset Baru</button>
+        <button type="button" onclick="exportExcel()">Simpan ke Excel Workbook</button>
+      </div>
+    </form>
+
+    <table id="asetTable">
+      <thead>
+        <tr>
+          <th>ID</th><th>Nama</th><th>Kategori</th><th>Status</th><th>Harga</th><th>Umur</th>
+          <th>Penyusutan</th><th>Keterangan</th><th>Dipinjam Oleh</th><th>Penanggung Jawab</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 SIMAK-SD | Sistem Informasi Manajemen Kepegawaian dan Aset Sekolah</p>
+  </footer>
+
+  <script>
+    function tambahAset() {
+      const form = document.forms['asetForm'];
+      const penyusutan = (parseInt(form.harga.value || 0) / parseInt(form.umur.value || 1)).toFixed(0);
+      form.penyusutan.value = penyusutan;
+
+      const data = [
+        form.id.value, form.nama.value, form.kategori.value, form.status.value,
+        form.harga.value, form.umur.value, penyusutan,
+        form.keterangan.value, form.dipinjam.value, form.penanggung.value
+      ];
+
+      const tbody = document.querySelector('#asetTable tbody');
+      const row = document.createElement('tr');
+      data.forEach(val => {
+        const td = document.createElement('td');
+        td.textContent = val;
+        row.appendChild(td);
+      });
+      tbody.appendChild(row);
+      form.reset();
+    }
+
+    function exportExcel() {
+      const wb = XLSX.utils.book_new();
+      const ws = XLSX.utils.table_to_sheet(document.getElementById('asetTable'));
+      XLSX.utils.book_append_sheet(wb, ws, 'Aset Sekolah');
+      XLSX.writeFile(wb, 'Data_Aset_Sekolah.xlsx');
+    }
+  </script>
+</body>
+</html>
