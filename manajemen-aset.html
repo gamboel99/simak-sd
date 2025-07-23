@@ -5,6 +5,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Manajemen Aset | e-Sekolah</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .form-grid label {
+      font-weight: bold;
+      margin-top: 0.5rem;
+    }
+
+    .form-grid input {
+      padding: 0.6rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      grid-column: span 2;
+      padding: 0.75rem;
+      font-size: 1rem;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .export-btn {
+      margin-bottom: 1.5rem;
+      background-color: #28a745;
+    }
+
+    .export-btn:hover {
+      background-color: #1e7e34;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    th, td {
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f0f0f0;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
 
@@ -58,7 +125,7 @@
       <button type="button" onclick="tambahData()">Simpan</button>
     </form>
 
-    <button onclick="exportToExcel()">Simpan ke Excel</button>
+    <button class="export-btn" onclick="exportToExcel()">Simpan ke Excel</button>
 
     <h2>Data Aset</h2>
     <table id="tabelAset">
@@ -74,7 +141,7 @@
           <th>Tahun</th>
           <th>Umur Ekonomis</th>
           <th>Harga</th>
-          <th>Penyusutan per Tahun</th>
+          <th>Penyusutan / Tahun</th>
           <th>Butuh Peremajaan</th>
         </tr>
       </thead>
@@ -102,7 +169,7 @@
 
       const tahunSekarang = new Date().getFullYear();
       const umurBarang = tahunSekarang - tahun;
-      const penyusutan = harga / umur;
+      const penyusutan = umur > 0 ? harga / umur : 0;
       const peremajaan = umurBarang >= umur ? "Ya" : "Tidak";
 
       const row = document.createElement("tr");
