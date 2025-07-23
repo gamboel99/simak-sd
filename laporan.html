@@ -15,17 +15,18 @@
     }
 
     header {
-      background-color: #004080;
+      background-color: #005f73; /* Biru Laut Korpri */
       color: white;
       padding: 1rem 2rem;
       text-align: center;
     }
 
     nav {
-      background-color: #0074cc;
+      background-color: #003049; /* Biru Dongker */
       display: flex;
       justify-content: center;
-      padding: 0.5rem;
+      padding: 0.75rem 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
     nav a {
@@ -33,10 +34,13 @@
       margin: 0 1rem;
       text-decoration: none;
       font-weight: bold;
+      font-size: 1rem;
+      transition: all 0.3s ease;
     }
 
     nav a:hover {
       text-decoration: underline;
+      color: #ffd166; /* Aksen hover emas */
     }
 
     main {
@@ -55,15 +59,15 @@
 
     h2 {
       margin-top: 0;
-      color: #004080;
+      color: #003049;
     }
 
-    .recommendation, .summary {
+    .summary, .recommendation {
       margin-top: 1rem;
     }
 
     .footer {
-      background-color: #004080;
+      background-color: #005f73;
       color: white;
       text-align: center;
       padding: 1rem;
@@ -77,10 +81,6 @@
       border-radius: 12px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       text-align: center;
-    }
-
-    .barcode {
-      margin: 1rem 0;
     }
 
     .barcode img {
@@ -102,7 +102,7 @@
 <nav>
   <a href="index.html">Beranda</a>
   <a href="kepegawaian.html">Kepegawaian</a>
-  <a href="manajemen-aset.html">manajemen-aset</a>
+  <a href="manajemen-aset.html">Manajemen Aset</a>
   <a href="laporan.html">Laporan</a>
   <a href="kontak.html">Kontak</a>
 </nav>
