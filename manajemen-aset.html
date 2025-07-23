@@ -3,81 +3,137 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Manajemen Aset</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Manajemen Aset | e-Sekolah</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <header>
-    <h1>SIMAK SD | Manajemen Aset</h1>
+    <h1>e-Sekolah - Manajemen Aset</h1>
   </header>
 
   <nav>
-    <a href="kepegawaian.html">Kepegawaian</a>
-    <a href="manajemen-aset.html" class="active">Manajemen Aset</a>
-    <a href="laporan.html">Laporan</a>
-    <a href="kontak.html">Kontak</a>
+    <ul class="menu">
+      <li><a href="index.html">Beranda</a></li>
+      <li><a href="kepegawaian.html">Kepegawaian</a></li>
+      <li><a class="active" href="manajemen-aset.html">Manajemen Aset</a></li>
+      <li><a href="laporan.html">Laporan</a></li>
+      <li><a href="kontak.html">Kontak</a></li>
+    </ul>
   </nav>
 
-  <div class="container">
-    <h2>Input Data Aset</h2>
+  <main class="container">
+    <h2>Form Input Aset Sekolah</h2>
     <form id="asetForm" class="form-grid">
-      <label>ID Barang:</label><input type="text" name="id" required />
-      <label>Nama Barang:</label><input type="text" name="nama" required />
-      <label>Jenis:</label><input type="text" name="jenis" />
-      <label>Harga Perolehan:</label><input type="number" name="harga" required />
-      <label>Umur Ekonomis (thn):</label><input type="number" name="umur" required />
-      <label>Metode Penyusutan:</label>
-      <select name="penyusutan">
-        <option value="garis">Garis Lurus</option>
-        <option value="menurun">Saldo Menurun</option>
-      </select>
-      <label>Status Barang:</label>
-      <select name="status">
-        <option>Beli</option>
-        <option>Sewa</option>
-        <option>Pinjam</option>
-      </select>
-      <label>Kondisi:</label>
-      <select name="kondisi">
-        <option>Ada</option>
-        <option>Hilang</option>
-        <option>Rusak</option>
-        <option>Dipinjam</option>
-        <option>Dalam Perbaikan</option>
-      </select>
-      <label>Dipinjam oleh:</label><input type="text" name="dipinjam" />
-      <label>Penanggung Jawab:</label><input type="text" name="pj" />
-      <label>Perlu Peremajaan?:</label>
-      <select name="remajakan">
-        <option>Tidak</option>
-        <option>Segera</option>
-      </select>
-      <label>Butuh Restok?:</label>
-      <select name="restok">
-        <option>Tidak</option>
-        <option>Ya</option>
-      </select>
-      <button type="submit">➕ Simpan Data</button>
+      <label for="idBarang">ID Barang</label>
+      <input type="text" id="idBarang" required>
+
+      <label for="namaBarang">Nama Barang</label>
+      <input type="text" id="namaBarang" required>
+
+      <label for="kategori">Kategori</label>
+      <input type="text" id="kategori" required>
+
+      <label for="status">Status (Sewa / Beli / Pinjam)</label>
+      <input type="text" id="status" required>
+
+      <label for="kondisi">Keterangan (Ada / Hilang / Rusak / Dalam Perbaikan / Dipinjam)</label>
+      <input type="text" id="kondisi" required>
+
+      <label for="dipinjamOleh">Jika Dipinjam, Oleh Siapa?</label>
+      <input type="text" id="dipinjamOleh">
+
+      <label for="penanggungJawab">Penanggung Jawab</label>
+      <input type="text" id="penanggungJawab">
+
+      <label for="tahunPengadaan">Tahun Pengadaan</label>
+      <input type="number" id="tahunPengadaan" required>
+
+      <label for="umurEkonomis">Umur Ekonomis (tahun)</label>
+      <input type="number" id="umurEkonomis" required>
+
+      <label for="harga">Harga Perolehan (Rp)</label>
+      <input type="number" id="harga" required>
+
+      <button type="button" onclick="tambahData()">Simpan</button>
     </form>
 
-    <h3>Data Aset Terkini</h3>
-    <button onclick="downloadExcel()">⬇️ Download Excel</button>
+    <button onclick="exportToExcel()">Simpan ke Excel</button>
+
+    <h2>Data Aset</h2>
     <table id="tabelAset">
       <thead>
         <tr>
-          <th>ID</th><th>Nama</th><th>Jenis</th><th>Harga</th><th>Umur</th>
-          <th>Metode</th><th>Penyusutan</th><th>Status</th><th>Kondisi</th>
-          <th>Dipinjam</th><th>Penanggung Jawab</th><th>Peremajaan</th><th>Restok</th>
+          <th>ID</th>
+          <th>Nama</th>
+          <th>Kategori</th>
+          <th>Status</th>
+          <th>Keterangan</th>
+          <th>Dipinjam Oleh</th>
+          <th>Penanggung Jawab</th>
+          <th>Tahun</th>
+          <th>Umur Ekonomis</th>
+          <th>Harga</th>
+          <th>Penyusutan per Tahun</th>
+          <th>Butuh Peremajaan</th>
         </tr>
       </thead>
       <tbody></tbody>
     </table>
-  </div>
+  </main>
 
   <footer>
-    &copy; 2025 SDI Ulumiyah Al-Makruf | Manajemen Aset Sekolah
+    <p>&copy; 2025 e-Sekolah | Sistem Manajemen Aset</p>
   </footer>
 
-  <script src="aset.js"></script>
+  <script>
+    function tambahData() {
+      const tbody = document.querySelector("#tabelAset tbody");
+      const id = document.getElementById("idBarang").value;
+      const nama = document.getElementById("namaBarang").value;
+      const kategori = document.getElementById("kategori").value;
+      const status = document.getElementById("status").value;
+      const kondisi = document.getElementById("kondisi").value;
+      const dipinjamOleh = document.getElementById("dipinjamOleh").value;
+      const penanggungJawab = document.getElementById("penanggungJawab").value;
+      const tahun = parseInt(document.getElementById("tahunPengadaan").value);
+      const umur = parseInt(document.getElementById("umurEkonomis").value);
+      const harga = parseFloat(document.getElementById("harga").value);
+
+      const tahunSekarang = new Date().getFullYear();
+      const umurBarang = tahunSekarang - tahun;
+      const penyusutan = harga / umur;
+      const peremajaan = umurBarang >= umur ? "Ya" : "Tidak";
+
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${id}</td>
+        <td>${nama}</td>
+        <td>${kategori}</td>
+        <td>${status}</td>
+        <td>${kondisi}</td>
+        <td>${dipinjamOleh}</td>
+        <td>${penanggungJawab}</td>
+        <td>${tahun}</td>
+        <td>${umur}</td>
+        <td>Rp${harga.toLocaleString()}</td>
+        <td>Rp${penyusutan.toLocaleString(undefined, { maximumFractionDigits: 0 })}</td>
+        <td>${peremajaan}</td>
+      `;
+      tbody.appendChild(row);
+      document.getElementById("asetForm").reset();
+    }
+
+    function exportToExcel() {
+      let table = document.getElementById("tabelAset");
+      let html = table.outerHTML;
+      let url = 'data:application/vnd.ms-excel,' + encodeURIComponent(html);
+      let link = document.createElement("a");
+      link.href = url;
+      link.download = 'data_aset_sekolah.xls';
+      link.click();
+    }
+  </script>
+
 </body>
 </html>
