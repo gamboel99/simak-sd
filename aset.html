@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manajemen Aset | e-Sekolah</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .form-grid label {
+      font-weight: bold;
+      margin-top: 0.5rem;
+    }
+
+    .form-grid input {
+      padding: 0.6rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      grid-column: span 2;
+      padding: 0.75rem;
+      font-size: 1rem;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .export-btn {
+      margin-bottom: 1.5rem;
+      background-color: #28a745;
+    }
+
+    .export-btn:hover {
+      background-color: #1e7e34;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    th, td {
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f0f0f0;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>e-Sekolah - Manajemen Aset</h1>
+  </header>
+
+  <nav>
+    <ul class="menu">
+      <li><a href="index.html">Beranda</a></li>
+      <li><a href="kepegawaian.html">Kepegawaian</a></li>
+      <li><a class="active" href="manajemen-aset.html">Manajemen Aset</a></li>
+      <li><a href="laporan.html">Laporan</a></li>
+      <li><a href="kontak.html">Kontak</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    <h2>Form Input Aset Sekolah</h2>
+    <form id="asetForm" class="form-grid">
+      <label for="idBarang">ID Barang</label>
+      <input type="text" id="idBarang" required>
+
+      <label for="namaBarang">Nama Barang</label>
+      <input type="text" id="namaBarang" required>
+
+      <label for="kategori">Kategori</label>
+      <input type="text" id="kategori" required>
+
+      <label for="status">Status (Sewa / Beli / Pinjam)</label>
+      <input type="text" id="status" required>
+
+      <label for="kondisi">Keterangan (Ada / Hilang / Rusak / Dalam Perbaikan / Dipinjam)</label>
+      <input type="text" id="kondisi" required>
+
+      <label for="dipinjamOleh">Jika Dipinjam, Oleh Siapa?</label>
+      <input type="text" id="dipinjamOleh">
+
+      <label for="penanggungJawab">Penanggung Jawab</label>
+      <input type="text" id="penanggungJawab">
+
+      <label for="tahunPengadaan">Tahun Pengadaan</label>
+      <input type="number" id="tahunPengadaan" required>
+
+      <label for="umurEkonomis">Umur Ekonomis (tahun)</label>
+      <input type="number" id="umurEkonomis" required>
+
+      <label for="harga">Harga Perolehan (Rp)</label>
+      <input type="number" id="harga" required>
+
+      <button type="button" onclick="tambahData()">Simpan</button>
+    </form>
+
+    <button class="export-btn" onclick="exportToExcel()">Simpan ke Excel</button>
+
+    <h2>Data Aset</h2>
+    <table id="tabelAset">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nama</th>
+          <th>Kategori</th>
+          <th>Status</th>
+          <th>Keterangan</th>
+          <th>Dipinjam Oleh</th>
+          <th>Penanggung Jawab</th>
+          <th>Tahun</th>
+          <th>Umur Ekonomis</th>
+          <th>Harga</th>
+          <th>Penyusutan / Tahun</th>
+          <th>Butuh Peremajaan</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 e-Sekolah | Sistem Manajemen Aset</p>
+  </footer>
+
+  <script>
+    function tambahData() {
+      const tbody = document.querySelector("#tabelAset tbody");
+      const id = document.getElementById("idBarang").value;
+      const nama = document.getElementById("namaBarang").value;
+      const kategori = document.getElementById("kategori").value;
+      const status = document.getElementById("status").value;
+      const kondisi = document.getElementById("kondisi").value;
+      const dipinjamOleh = document.getElementById("dipinjamOleh").value;
+      const penanggungJawab = document.getElementById("penanggungJawab").value;
+      const tahun = parseInt(document.getElementById("tahunPengadaan").value);
+      const umur = parseInt(document.getElementById("umurEkonomis").value);
+      const harga = parseFloat(document.getElementById("harga").value);
+
+      const tahunSekarang = new Date().getFullYear();
+      const umurBarang = tahunSekarang - tahun;
+      const penyusutan = umur > 0 ? harga / umur : 0;
+      const peremajaan = umurBarang >= umur ? "Ya" : "Tidak";
+
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${id}</td>
+        <td>${nama}</td>
+        <td>${kategori}</td>
+        <td>${status}</td>
+        <td>${kondisi}</td>
+        <td>${dipinjamOleh}</td>
+        <td>${penanggungJawab}</td>
+        <td>${tahun}</td>
+        <td>${umur}</td>
+        <td>Rp${harga.toLocaleString()}</td>
+        <td>Rp${penyusutan.toLocaleString(undefined, { maximumFractionDigits: 0 })}</td>
+        <td>${peremajaan}</td>
+      `;
+      tbody.appendChild(row);
+      document.getElementById("asetForm").reset();
+    }
+
+    function exportToExcel() {
+      let table = document.getElementById("tabelAset");
+      let html = table.outerHTML;
+      let url = 'data:application/vnd.ms-excel,' + encodeURIComponent(html);
+      let link = document.createElement("a");
+      link.href = url;
+      link.download = 'data_aset_sekolah.xls';
+      link.click();
+    }
+  </script>
+
+</body>
+</html>
