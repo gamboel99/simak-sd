@@ -5,25 +5,107 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SIMAK SD - Beranda</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #fff;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(to right, #d32f2f, #ffffff);
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+      position: relative;
+    }
+    header::after {
+      content: "";
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/97/Garuda_Pancasila.svg');
+      background-size: 60px;
+      background-repeat: no-repeat;
+      background-position: top right;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      opacity: 0.2;
+    }
+    nav {
+      background-color: #b71c1c;
+    }
+    nav ul.menu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    nav ul.menu li {
+      margin: 0;
+    }
+    nav ul.menu li a {
+      display: block;
+      padding: 1rem 1.5rem;
+      color: #fff;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    nav ul.menu li a:hover,
+    nav ul.menu li a.active {
+      background-color: #e53935;
+    }
+    .container {
+      padding: 2rem;
+      text-align: center;
+    }
+    .hero h2 {
+      color: #d32f2f;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .card {
+      background-color: #f8f8f8;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    footer {
+      background-color: #b71c1c;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
   <header>
     <h1>Sistem Informasi Manajemen Kepegawaian & Aset Sekolah</h1>
   </header>
+
   <nav>
     <ul class="menu">
       <li><a href="index.html" class="active">Beranda</a></li>
       <li><a href="kepegawaian.html">Kepegawaian</a></li>
-      <li><a href="aset.html">Manajemen Aset</a></li>
+      <li><a href="manajemen-aset.html">Manajemen Aset</a></li>
       <li><a href="laporan.html">Laporan</a></li>
       <li><a href="kontak.html">Kontak</a></li>
     </ul>
   </nav>
+
   <div class="container">
     <section class="hero">
       <h2>Selamat Datang di SIMAK SD</h2>
       <p>Platform digital untuk mengelola kepegawaian, aset, laporan dan komunikasi di lingkungan sekolah dasar.</p>
     </section>
+
     <div class="info-grid">
       <div class="card">
         <h3>Manajemen Kepegawaian</h3>
@@ -39,6 +121,7 @@
       </div>
     </div>
   </div>
+
   <footer>
     <p>&copy; e-Sekolah | SIMAK-SD Develop By CV Mitra Utama Consultindo</p>
   </footer>
