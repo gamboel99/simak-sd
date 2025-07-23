@@ -1,155 +1,245 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Data Kepegawaian - e-Sekolah</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kepegawaian | SIMAK-SD</title>
+  <link rel="stylesheet" href="style.css">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f7f7f7;
-    }
-    header, footer {
-      background-color: #d71920;
-      color: white;
-      text-align: center;
-      padding: 15px 0;
-    }
-    .menu {
-      display: flex;
-      list-style: none;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
       background-color: #fff;
-      padding: 10px;
+      color: #333;
+    }
+
+    header {
+      background-color: #d32f2f;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
       justify-content: center;
+      background-color: #f44336;
     }
-    .menu li {
-      margin: 0 15px;
-    }
-    .menu li a {
+
+    nav a {
+      color: white;
+      padding: 1rem;
       text-decoration: none;
-      color: #d71920;
       font-weight: bold;
     }
-    .form-card {
+
+    nav a:hover {
+      background-color: #b71c1c;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .form-container {
       background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      max-width: 1000px;
-      margin: 0 auto 30px auto;
-    }
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-    }
-    .form-grid label {
-      font-weight: bold;
-    }
-    .form-grid input, .form-grid select {
-      padding: 8px;
-      border-radius: 6px;
       border: 1px solid #ccc;
-      width: 100%;
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.25rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
     .form-actions {
-      margin-top: 20px;
+      margin-top: 1.5rem;
       text-align: right;
     }
-    .form-actions button {
-      background-color: #007e6a;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-left: 10px;
-    }
-    .table-container {
-      overflow-x: auto;
-    }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 10px;
+      margin-top: 2rem;
     }
-    table th, table td {
-      border: 1px solid #ccc;
-      padding: 10px;
+
+    table,
+    th,
+    td {
+      border: 1px solid #ddd;
+    }
+
+    th,
+    td {
+      padding: 0.75rem;
       text-align: left;
     }
-    table th {
-      background-color: #007e6a;
+
+    th {
+      background-color: #f44336;
       color: white;
     }
-    h2 {
+
+    footer {
+      background-color: #d32f2f;
+      color: white;
       text-align: center;
-      color: #333;
+      padding: 1rem;
+      position: relative;
+      margin-top: 4rem;
     }
   </style>
 </head>
+
 <body>
   <header>
-    <h1>Sistem Kepegawaian Sekolah</h1>
+    <h1>SIMAK-SD</h1>
+    <p>Manajemen Kepegawaian Sekolah</p>
   </header>
   <nav>
-    <ul class="menu">
-      <li><a href="index.html">Beranda</a></li>
-      <li><a href="kepegawaian.html" class="active">Kepegawaian</a></li>
-      <li><a href="manajemen-aset.html">Manajemen Aset</a></li>
-      <li><a href="laporan.html">Laporan</a></li>
-      <li><a href="kontak.html">Kontak</a></li>
-    </ul>
+    <a href="index.html">Beranda</a>
+    <a href="kepegawaian.html">Kepegawaian</a>
+    <a href="manajemen-aset.html">Manajemen Aset</a>
+    <a href="laporan.html">Laporan</a>
+    <a href="kontak.html">Kontak</a>
   </nav>
-  <div class="container">
-    <h2>Formulir Data Pegawai</h2>
-    <div class="form-card">
-      <form id="formPegawai">
-        <div class="form-grid">
-          <div><label>Nama Lengkap</label><input type="text" name="nama" required></div>
-          <div><label>NIP</label><input type="text" name="nip"></div>
-          <div><label>Jabatan</label><input type="text" name="jabatan"></div>
-          <div><label>Status Kepegawaian</label>
-            <select name="status_kepegawaian">
-              <option value="PNS">PNS</option>
-              <option value="P3K">P3K</option>
-              <option value="Guru Tetap Yayasan">Guru Tetap Yayasan</option>
-              <option value="Guru Honorer">Guru Honorer</option>
-              <option value="Magang">Magang</option>
-            </select>
-          </div>
-          <div><label>Tanggal Masuk</label><input type="date" name="tgl_masuk" id="tglMasuk" required></div>
-          <div><label>Tanggal Resign/Pindah</label><input type="date" name="tgl_resign"></div>
-          <div><label>Masa Kerja (tahun)</label><input type="text" id="masaKerja" readonly></div>
-          <div><label>Status</label>
-            <select name="status">
-              <option value="Aktif">Aktif</option>
-              <option value="Resign">Resign</option>
-              <option value="Pindah">Pindah</option>
-            </select>
-          </div>
-          <div><label>Gaji (Rp)</label><input type="number" name="gaji"></div>
-          <div><label>Jumlah Cuti Tahunan</label><input type="number" name="cuti"></div>
-          <div><label>Cuti Diambil</label><input type="number" name="cuti_diambil"></div>
-          <div><label>Prestasi</label><input type="text" name="prestasi"></div>
-          <div><label>Jumlah Keluarga</label><input type="number" name="keluarga"></div>
-          <div><label>Tanggungan di Sekolah</label><input type="text" name="tanggungan"></div>
-          <div><label>Alamat</label><input type="text" name="alamat"></div>
-          <div><label>No. Telepon</label><input type="tel" name="telp"></div>
-          <div><label>Email</label><input type="email" name="email"></div>
-          <div style="grid-column: span 2;"><label>Catatan Kasus / Sanksi</label><input type="text" name="catatan"></div>
-          <div style="grid-column: span 2;"><label>Keterangan</label><input type="text" name="keterangan"></div>
-        </div>
+
+  <main>
+    <div class="form-container">
+      <h2>Input Data Kepegawaian</h2>
+      <form id="formKepegawaian">
+        <label>Nama Lengkap</label>
+        <input type="text" id="nama">
+
+        <label>NIP</label>
+        <input type="text" id="nip">
+
+        <label>Jabatan</label>
+        <input type="text" id="jabatan">
+
+        <label>Unit Kerja</label>
+        <input type="text" id="unit">
+
+        <label>Status Kepegawaian</label>
+        <select id="status">
+          <option value="PNS">PNS</option>
+          <option value="Honorer">Honorer</option>
+          <option value="PPPK">PPPK</option>
+        </select>
+
+        <label>Tanggal Resign</label>
+        <input type="date" id="resign">
+
+        <label>Prestasi</label>
+        <input type="text" id="prestasi">
+
+        <label>Gaji</label>
+        <input type="number" id="gaji">
+
+        <label>Cuti Tahunan</label>
+        <input type="number" id="cuti" value="12">
+
+        <label>Cuti Terpakai</label>
+        <input type="number" id="terpakai" value="0">
+
+        <label>Jumlah Keluarga</label>
+        <input type="number" id="keluarga">
+
+        <label>Alamat</label>
+        <input type="text" id="alamat">
+
+        <label>Telepon</label>
+        <input type="text" id="telp">
+
+        <label>Email</label>
+        <input type="email" id="email">
+
         <div class="form-actions">
-          <button type="submit">Simpan</button>
-          <button type="button" onclick="downloadExcel()">Save to Excel Workbook</button>
+          <button type="button" onclick="tambahData()">Simpan</button>
         </div>
       </form>
     </div>
-  </div>
+
+    <table id="tabelKepegawaian">
+      <thead>
+        <tr>
+          <th>Nama</th>
+          <th>NIP</th>
+          <th>Jabatan</th>
+          <th>Unit</th>
+          <th>Status</th>
+          <th>Resign</th>
+          <th>Prestasi</th>
+          <th>Gaji</th>
+          <th>Sisa Cuti</th>
+          <th>Keluarga</th>
+          <th>Alamat</th>
+          <th>Telp</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
+
   <footer>
-    <p>&copy; 2025 e-Sekolah | SIMAK-SD Develop By CV. Mitra Utama Consultindo</p>
+    SIMAK-SD Develop By CV Mitra Utama Consultindo
   </footer>
+
+  <script>
+    function tambahData() {
+      const nama = document.getElementById('nama').value;
+      const nip = document.getElementById('nip').value;
+      const jabatan = document.getElementById('jabatan').value;
+      const unit = document.getElementById('unit').value;
+      const status = document.getElementById('status').value;
+      const resign = document.getElementById('resign').value;
+      const prestasi = document.getElementById('prestasi').value;
+      const gaji = document.getElementById('gaji').value;
+      const cuti = parseInt(document.getElementById('cuti').value);
+      const terpakai = parseInt(document.getElementById('terpakai').value);
+      const sisaCuti = cuti - terpakai;
+      const keluarga = document.getElementById('keluarga').value;
+      const alamat = document.getElementById('alamat').value;
+      const telp = document.getElementById('telp').value;
+      const email = document.getElementById('email').value;
+
+      const tbody = document.getElementById('tabelKepegawaian').querySelector('tbody');
+      const row = tbody.insertRow();
+      row.innerHTML = `
+        <td>${nama}</td>
+        <td>${nip}</td>
+        <td>${jabatan}</td>
+        <td>${unit}</td>
+        <td>${status}</td>
+        <td>${resign}</td>
+        <td>${prestasi}</td>
+        <td>${gaji}</td>
+        <td>${sisaCuti}</td>
+        <td>${keluarga}</td>
+        <td>${alamat}</td>
+        <td>${telp}</td>
+        <td>${email}</td>
+      `;
+
+      document.getElementById('formKepegawaian').reset();
+    }
+  </script>
 </body>
+
 </html>
