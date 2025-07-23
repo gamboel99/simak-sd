@@ -5,6 +5,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Data Kepegawaian - e-Sekolah</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .form-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 900px;
+      margin: 0 auto 30px auto;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .form-grid label {
+      font-weight: bold;
+    }
+
+    .form-grid input {
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      width: 100%;
+    }
+
+    .form-actions {
+      margin-top: 20px;
+      text-align: right;
+    }
+
+    .form-actions button {
+      background-color: #007e6a;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .form-actions button:hover {
+      background-color: #005f4f;
+    }
+
+    .table-container {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+
+    table th {
+      background-color: #007e6a;
+      color: white;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -22,22 +94,47 @@
   </nav>
 
   <div class="container">
-    <h2>Form Data Pegawai</h2>
-    <form id="formPegawai">
-      <div class="form-grid">
-        <label>Nama Lengkap</label><input type="text" name="nama" required>
-        <label>NIP</label><input type="text" name="nip">
-        <label>Jabatan</label><input type="text" name="jabatan">
-        <label>Tanggal Mulai Kerja</label><input type="date" name="tgl_masuk" id="tglMasuk" required>
-        <label>Masa Kerja (tahun)</label><input type="text" id="masaKerja" readonly>
-        <label>Catatan Kasus / Sanksi</label><input type="text" name="catatan">
-        <label>Keterangan</label><input type="text" name="keterangan">
-      </div>
-      <button type="submit">Simpan</button>
-    </form>
+    <h2>Formulir Data Pegawai</h2>
+    <div class="form-card">
+      <form id="formPegawai">
+        <div class="form-grid">
+          <div>
+            <label>Nama Lengkap</label>
+            <input type="text" name="nama" required>
+          </div>
+          <div>
+            <label>NIP</label>
+            <input type="text" name="nip">
+          </div>
+          <div>
+            <label>Jabatan</label>
+            <input type="text" name="jabatan">
+          </div>
+          <div>
+            <label>Tanggal Masuk</label>
+            <input type="date" name="tgl_masuk" id="tglMasuk" required>
+          </div>
+          <div>
+            <label>Masa Kerja (tahun)</label>
+            <input type="text" id="masaKerja" readonly>
+          </div>
+          <div>
+            <label>Catatan Kasus / Sanksi</label>
+            <input type="text" name="catatan">
+          </div>
+          <div style="grid-column: span 2;">
+            <label>Keterangan</label>
+            <input type="text" name="keterangan">
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit">Simpan</button>
+          <button type="button" onclick="downloadExcel()">Save to Excel Workbook</button>
+        </div>
+      </form>
+    </div>
 
     <h2>Data Pegawai</h2>
-    <button onclick="downloadExcel()">Download Excel</button>
     <div class="table-container">
       <table id="tabelPegawai">
         <thead>
@@ -70,7 +167,13 @@
     tglMasuk.addEventListener('change', () => {
       const masuk = new Date(tglMasuk.value);
       const now = new Date();
-      const tahun = now.getFullYear() - masuk.getFullYear();
+      let tahun = now.getFullYear() - masuk.getFullYear();
+      if (
+        now.getMonth() < masuk.getMonth() || 
+        (now.getMonth() === masuk.getMonth() && now.getDate() < masuk.getDate())
+      ) {
+        tahun--;
+      }
       masaKerjaInput.value = tahun >= 0 ? tahun : 0;
     });
 
@@ -91,10 +194,10 @@
     });
 
     function downloadExcel() {
-      let table = document.getElementById("tabelPegawai");
-      let html = table.outerHTML.replace(/ /g, '%20');
-      let filename = 'data_kepegawaian.xls';
-      let link = document.createElement('a');
+      const table = document.getElementById("tabelPegawai");
+      const html = table.outerHTML.replace(/ /g, '%20');
+      const filename = 'Data_Kepegawaian.xls';
+      const link = document.createElement('a');
       link.href = 'data:application/vnd.ms-excel,' + html;
       link.download = filename;
       link.click();
