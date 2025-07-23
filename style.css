@@ -1,9 +1,11 @@
+/* Reset dan Box-sizing */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Umum */
 body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #f4f6f8;
@@ -11,23 +13,23 @@ body {
   line-height: 1.6;
 }
 
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-  padding: 2rem 0;
-}
-
+/* Header */
 header {
-  background-color: #005a87;
-  color: #fff;
-  padding: 1rem 0;
+  background-color: #007e6a;
+  color: white;
+  padding: 1rem 2rem;
   text-align: center;
 }
 
+header h1 {
+  margin: 0;
+}
+
+/* Navigasi */
 nav {
   background-color: #003d5c;
   padding: 0.5rem 0;
+  text-align: center;
 }
 
 .menu {
@@ -54,6 +56,23 @@ nav {
   background-color: #0079b3;
 }
 
+nav a.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* Container Utama */
+.container {
+  width: 90%;
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #ccc;
+}
+
+/* Hero (Beranda) */
 .hero {
   background: linear-gradient(90deg, #e0f7fa, #f0f4c3);
   padding: 2rem;
@@ -62,6 +81,7 @@ nav {
   margin-bottom: 2rem;
 }
 
+/* Kartu Informasi */
 .info-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -72,7 +92,7 @@ nav {
   background-color: #fff;
   padding: 1.5rem;
   border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
 }
 
@@ -80,51 +100,7 @@ nav {
   transform: translateY(-5px);
 }
 
-footer {
-  background-color: #003d5c;
-  color: white;
-  text-align: center;
-  padding: 1rem 0;
-  margin-top: 2rem;
-}
-
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
-}
-
-header {
-  background-color: #007e6a;
-  color: white;
-  padding: 1rem 2rem;
-}
-
-header h1 {
-  margin: 0;
-}
-
-nav a {
-  margin-right: 1rem;
-  color: white;
-  text-decoration: none;
-}
-
-nav a.active {
-  font-weight: bold;
-  text-decoration: underline;
-}
-
-.container {
-  max-width: 1000px;
-  margin: 2rem auto;
-  padding: 1rem;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 0 10px #ccc;
-}
-
+/* Form Grid */
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -132,6 +108,7 @@ nav a.active {
   margin-bottom: 2rem;
 }
 
+/* Tabel */
 .table-container {
   overflow-x: auto;
   margin-top: 1rem;
@@ -153,9 +130,12 @@ th {
   background: #f2f2f2;
 }
 
+/* Footer */
 footer {
+  background-color: #003d5c;
+  color: white;
   text-align: center;
-  padding: 1rem;
-  background: #eee;
+  padding: 1rem 0;
   font-size: 0.9rem;
+  margin-top: 2rem;
 }
