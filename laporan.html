@@ -2,90 +2,156 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Laporan | SIMAK SD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Laporan Bulanan | e-Sekolah</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .report-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .report-panel {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .report-panel h2 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: #004e7c;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 0.5rem;
+    }
+
+    .report-panel ul {
+      padding-left: 1.2rem;
+    }
+
+    .report-panel ul li {
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+    }
+
+    .legal-section {
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .legal-section img {
+      width: 120px;
+      margin: 1rem auto;
+      display: block;
+    }
+
+    .legal-section .signature {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .legal-section .sign-box {
+      text-align: center;
+    }
+
+    .btn-print {
+      margin-top: 2rem;
+      padding: 0.75rem 1.5rem;
+      background: #0079b3;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    @media print {
+      .btn-print {
+        display: none;
+      }
+      nav, header, footer {
+        display: none;
+      }
+      body {
+        margin: 0;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Sistem Informasi Manajemen Kepegawaian & Aset Sekolah</h1>
+    <h1>Laporan Bulanan</h1>
+    <p>e-Sekolah | Manajemen Kepegawaian & Aset</p>
   </header>
 
   <nav>
     <ul class="menu">
       <li><a href="index.html">Beranda</a></li>
       <li><a href="kepegawaian.html">Kepegawaian</a></li>
-      <li><a href="manajemen.html">Manajemen Aset</a></li>
+      <li><a href="aset.html">Manajemen Aset</a></li>
       <li><a href="laporan.html" class="active">Laporan</a></li>
       <li><a href="kontak.html">Kontak</a></li>
     </ul>
   </nav>
 
-  <main class="container">
-    <h2>Laporan Kepegawaian & Aset</h2>
+  <div class="container">
+    <div class="report-container">
+      <!-- Panel Kepegawaian -->
+      <div class="report-panel">
+        <h2>Ringkasan Kepegawaian</h2>
+        <ul>
+          <li>Total Guru Aktif: 25</li>
+          <li>Guru Mengundurkan Diri: 2 (Nama: Ibu Ana, Pak Rahmat)</li>
+          <li>Ketidakhadiran Tinggi: 3 orang (Pak Budi, Ibu Lina, Pak Dedi)</li>
+          <li>Target Mengajar Tidak Tercapai: 4 orang</li>
+          <li>Rekomendasi: Peningkatan pelatihan & motivasi kerja</li>
+        </ul>
+      </div>
 
-    <div class="form-grid">
-      <label for="jenisLaporan">Jenis Laporan:</label>
-      <select id="jenisLaporan">
-        <option value="kepegawaian">Kepegawaian</option>
-        <option value="aset">Aset</option>
-      </select>
-
-      <label for="rentangTanggal">Rentang Tanggal:</label>
-      <input type="date" id="tanggalAwal">
-      <input type="date" id="tanggalAkhir">
-
-      <button onclick="generateLaporan()">Tampilkan Laporan</button>
-      <button onclick="exportToExcel()" style="background:#007bff">Export Excel</button>
+      <!-- Panel Aset -->
+      <div class="report-panel">
+        <h2>Ringkasan Manajemen Aset</h2>
+        <ul>
+          <li>Total Inventaris: 187 item</li>
+          <li>Barang Rusak/Hilang: 5 unit (3 Meja, 2 Proyektor)</li>
+          <li>Pengadaan Bulan Depan: 10 unit kursi, 2 laptop</li>
+          <li>Estimasi Dana: Rp 17.500.000,-</li>
+          <li>Rekomendasi: Pengecekan inventaris rutin & efisiensi pengadaan</li>
+        </ul>
+      </div>
     </div>
 
-    <div id="hasilLaporan">
-      <table id="tabelLaporan">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Nama</th>
-            <th>Jabatan/Barang</th>
-            <th>Keterangan</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td colspan="4">Belum ada data</td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- Bagian Legalitas -->
+    <div class="legal-section">
+      <h2>Legalisasi & Validasi Laporan</h2>
+      <img src="barcode.png" alt="Kode QR/Barcode Validasi" />
+      <div class="signature">
+        <div class="sign-box">
+          <p><strong>Mengetahui,</strong></p>
+          <p>Kepala Sekolah</p>
+          <br><br>
+          <p><u>Drs. Ahmad Suryana</u><br>NIP. 19720101 199001 1 001</p>
+        </div>
+        <div class="sign-box">
+          <p><strong>Diperiksa,</strong></p>
+          <p>Admin Kepegawaian</p>
+          <br><br>
+          <p><u>Sri Handayani, S.Kom</u><br>ID: ADMN/2023/019</p>
+        </div>
+      </div>
     </div>
-  </main>
+
+    <div style="text-align:center;">
+      <button class="btn-print" onclick="window.print()">Cetak Laporan</button>
+    </div>
+  </div>
 
   <footer>
-    <p>&copy; 2025 SIMAK SD - Sistem Manajemen Kepegawaian dan Aset Sekolah</p>
+    <p>&copy; 2025 e-Sekolah. Seluruh hak cipta dilindungi undang-undang.</p>
   </footer>
-
-  <script>
-    function generateLaporan() {
-      const jenis = document.getElementById('jenisLaporan').value;
-      const awal = document.getElementById('tanggalAwal').value;
-      const akhir = document.getElementById('tanggalAkhir').value;
-      const tbody = document.querySelector('#tabelLaporan tbody');
-
-      tbody.innerHTML = '';
-
-      for (let i = 1; i <= 5; i++) {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>${i}</td>
-          <td>${jenis == 'kepegawaian' ? 'Guru ' + i : 'Barang ' + i}</td>
-          <td>${jenis == 'kepegawaian' ? 'Guru Kelas' : 'Inventaris'}</td>
-          <td>Data dari ${awal} sampai ${akhir}</td>
-        `;
-        tbody.appendChild(row);
-      }
-    }
-
-    function exportToExcel() {
-      alert('Fungsi Export ke Excel belum diaktifkan. Tambahkan library XLSX jika dibutuhkan.');
-    }
-  </script>
 </body>
 </html>
