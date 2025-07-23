@@ -3,86 +3,81 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Manajemen Aset | SIMAK-SD</title>
+  <title>Manajemen Aset | e-Sekolah</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="aset.js" defer></script>
 </head>
 <body>
   <header>
-    <div class="container">
-      <h1>SIMAK-SD</h1>
-      <nav>
-        <ul>
-          <li><a href="index.html">Beranda</a></li>
-          <li><a href="kepegawaian.html">Kepegawaian</a></li>
-          <li><a href="aset.html" class="active">Manajemen Aset</a></li>
-          <li><a href="laporan.html">Laporan</a></li>
-          <li><a href="kontak.html">Kontak</a></li>
-        </ul>
-      </nav>
-    </div>
+    <h1>Manajemen Aset Sekolah</h1>
   </header>
 
+  <nav>
+    <ul class="menu">
+      <li><a href="index.html">Beranda</a></li>
+      <li><a href="kepegawaian.html">Kepegawaian</a></li>
+      <li><a class="active" href="aset.html">Manajemen Aset</a></li>
+      <li><a href="laporan.html">Laporan</a></li>
+      <li><a href="kontak.html">Kontak</a></li>
+    </ul>
+  </nav>
+
   <main class="container">
-    <h2>Manajemen Aset</h2>
-    <form id="formAset">
-      <label for="nama">Nama Aset:</label>
-      <input type="text" id="nama" name="nama" required>
-
-      <label for="jumlah">Jumlah:</label>
-      <input type="number" id="jumlah" name="jumlah" required>
-
-      <label for="lokasi">Lokasi:</label>
-      <input type="text" id="lokasi" name="lokasi" required>
-
-      <button type="submit">Tambah Aset</button>
+    <h2>Form Input Data Aset</h2>
+    <form id="form-aset" class="form-grid">
+      <label>ID Barang:<input type="text" name="id" required></label>
+      <label>Nama Barang:<input type="text" name="nama" required></label>
+      <label>Tanggal Masuk:<input type="date" name="tanggal_masuk" required></label>
+      <label>Harga Perolehan:<input type="number" name="harga" required></label>
+      <label>Umur Ekonomis (tahun):<input type="number" name="umur" required></label>
+      <label>Status:<select name="status">
+        <option value="Milik">Milik</option>
+        <option value="Sewa">Sewa</option>
+        <option value="Pinjam">Pinjam</option>
+      </select></label>
+      <label>Kondisi:<select name="kondisi">
+        <option value="Ada">Ada</option>
+        <option value="Hilang">Hilang</option>
+        <option value="Rusak">Rusak</option>
+        <option value="Perbaikan">Dalam Perbaikan</option>
+        <option value="Dipinjam">Dipinjam</option>
+      </select></label>
+      <label>Dipinjam Oleh:<input type="text" name="peminjam"></label>
+      <label>Penanggung Jawab:<input type="text" name="penanggung"></label>
+      <label>Keterangan:<input type="text" name="keterangan"></label>
+      <button type="submit">Simpan Aset</button>
     </form>
 
-    <h3>Data Aset</h3>
-    <button onclick="downloadExcel()">Unduh Excel</button>
-    <table id="tabelAset">
-      <thead>
-        <tr>
-          <th>Nama Aset</th>
-          <th>Jumlah</th>
-          <th>Lokasi</th>
-        </tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
+    <button id="downloadExcel">Download Excel Workbook</button>
+
+    <div class="table-container">
+      <h3>Data Aset Sekolah</h3>
+      <table id="tabel-aset">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nama</th>
+            <th>Tanggal Masuk</th>
+            <th>Harga</th>
+            <th>Umur Ekonomis</th>
+            <th>Penyusutan/Tahun</th>
+            <th>Status</th>
+            <th>Kondisi</th>
+            <th>Peminjam</th>
+            <th>Penanggung Jawab</th>
+            <th>Keterangan</th>
+            <th>Perlu Peremajaan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Data aset akan diisi via JavaScript -->
+        </tbody>
+      </table>
+    </div>
   </main>
 
   <footer>
-    <div class="container">
-      <p>Developed by CV. Mitra Utama Consultindo</p>
-    </div>
+    <p>&copy; 2025 e-Sekolah - Manajemen Aset Sekolah</p>
   </footer>
-
-  <script>
-    const form = document.getElementById('formAset');
-    const tabel = document.querySelector('#tabelAset tbody');
-    let data = [];
-
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const nama = document.getElementById('nama').value;
-      const jumlah = document.getElementById('jumlah').value;
-      const lokasi = document.getElementById('lokasi').value;
-
-      const row = `<tr><td>${nama}</td><td>${jumlah}</td><td>${lokasi}</td></tr>`;
-      tabel.innerHTML += row;
-
-      data.push({ Nama_Aset: nama, Jumlah: jumlah, Lokasi: lokasi });
-      form.reset();
-    });
-
-    function downloadExcel() {
-      const wb = XLSX.utils.book_new();
-      const ws = XLSX.utils.json_to_sheet(data);
-      XLSX.utils.book_append_sheet(wb, ws, "DataAset");
-      XLSX.writeFile(wb, "data_aset.xlsx");
-    }
-  </script>
 </body>
 </html>
