@@ -1,11 +1,10 @@
-/* Reset dan Box-sizing */
+/* Reset dan Dasar */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Umum */
 body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #f4f6f8;
@@ -23,13 +22,13 @@ header {
 
 header h1 {
   margin: 0;
+  font-size: 1.8rem;
 }
 
 /* Navigasi */
 nav {
   background-color: #003d5c;
   padding: 0.5rem 0;
-  text-align: center;
 }
 
 .menu {
@@ -52,19 +51,16 @@ nav {
   transition: background 0.3s;
 }
 
-.menu a:hover {
-  background-color: #0079b3;
-}
-
+.menu a:hover,
 nav a.active {
-  font-weight: bold;
+  background-color: #0079b3;
   text-decoration: underline;
 }
 
 /* Container Utama */
 .container {
   width: 90%;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 2rem auto;
   padding: 1rem;
   background-color: white;
@@ -72,7 +68,7 @@ nav a.active {
   box-shadow: 0 0 10px #ccc;
 }
 
-/* Hero (Beranda) */
+/* Hero Section (Halaman Beranda) */
 .hero {
   background: linear-gradient(90deg, #e0f7fa, #f0f4c3);
   padding: 2rem;
@@ -100,7 +96,7 @@ nav a.active {
   transform: translateY(-5px);
 }
 
-/* Form Grid */
+/* Formulir */
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -136,6 +132,6 @@ footer {
   color: white;
   text-align: center;
   padding: 1rem 0;
-  font-size: 0.9rem;
   margin-top: 2rem;
+  font-size: 0.9rem;
 }
