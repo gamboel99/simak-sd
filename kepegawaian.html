@@ -2,10 +2,10 @@
 <html lang="id">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kepegawaian | SIMAK-SD</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -15,27 +15,42 @@
     }
 
     header {
-      background-color: #d32f2f;
+      background: linear-gradient(to right, #d32f2f, #ffffff);
       color: white;
-      padding: 1rem 2rem;
+      padding: 1.5rem;
       text-align: center;
+      position: relative;
+    }
+
+    header::after {
+      content: "";
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/97/Garuda_Pancasila.svg');
+      background-size: 60px;
+      background-repeat: no-repeat;
+      background-position: top right;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      opacity: 0.2;
     }
 
     nav {
-      display: flex;
-      justify-content: center;
-      background-color: #f44336;
+      background-color: #b71c1c;
     }
 
     nav a {
       color: white;
-      padding: 1rem;
+      padding: 1rem 1.5rem;
+      display: inline-block;
       text-decoration: none;
       font-weight: bold;
     }
 
-    nav a:hover {
-      background-color: #b71c1c;
+    nav a:hover,
+    nav a.active {
+      background-color: #e53935;
     }
 
     main {
@@ -56,6 +71,7 @@
     label {
       display: block;
       margin-top: 1rem;
+      font-weight: bold;
     }
 
     input,
@@ -72,20 +88,29 @@
       text-align: right;
     }
 
+    .form-actions button {
+      padding: 0.7rem 1.5rem;
+      background-color: #d32f2f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .form-actions button:hover {
+      background-color: #b71c1c;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 2rem;
     }
 
-    table,
     th,
     td {
       border: 1px solid #ddd;
-    }
-
-    th,
-    td {
       padding: 0.75rem;
       text-align: left;
     }
@@ -96,11 +121,10 @@
     }
 
     footer {
-      background-color: #d32f2f;
+      background-color: #b71c1c;
       color: white;
       text-align: center;
       padding: 1rem;
-      position: relative;
       margin-top: 4rem;
     }
   </style>
@@ -111,9 +135,10 @@
     <h1>SIMAK-SD</h1>
     <p>Manajemen Kepegawaian Sekolah</p>
   </header>
+
   <nav>
     <a href="index.html">Beranda</a>
-    <a href="kepegawaian.html">Kepegawaian</a>
+    <a href="kepegawaian.html" class="active">Kepegawaian</a>
     <a href="manajemen-aset.html">Manajemen Aset</a>
     <a href="laporan.html">Laporan</a>
     <a href="kontak.html">Kontak</a>
@@ -124,16 +149,16 @@
       <h2>Input Data Kepegawaian</h2>
       <form id="formKepegawaian">
         <label>Nama Lengkap</label>
-        <input type="text" id="nama">
+        <input type="text" id="nama" />
 
         <label>NIP</label>
-        <input type="text" id="nip">
+        <input type="text" id="nip" />
 
         <label>Jabatan</label>
-        <input type="text" id="jabatan">
+        <input type="text" id="jabatan" />
 
         <label>Unit Kerja</label>
-        <input type="text" id="unit">
+        <input type="text" id="unit" />
 
         <label>Status Kepegawaian</label>
         <select id="status">
@@ -143,31 +168,31 @@
         </select>
 
         <label>Tanggal Resign</label>
-        <input type="date" id="resign">
+        <input type="date" id="resign" />
 
         <label>Prestasi</label>
-        <input type="text" id="prestasi">
+        <input type="text" id="prestasi" />
 
         <label>Gaji</label>
-        <input type="number" id="gaji">
+        <input type="number" id="gaji" />
 
         <label>Cuti Tahunan</label>
-        <input type="number" id="cuti" value="12">
+        <input type="number" id="cuti" value="12" />
 
         <label>Cuti Terpakai</label>
-        <input type="number" id="terpakai" value="0">
+        <input type="number" id="terpakai" value="0" />
 
         <label>Jumlah Keluarga</label>
-        <input type="number" id="keluarga">
+        <input type="number" id="keluarga" />
 
         <label>Alamat</label>
-        <input type="text" id="alamat">
+        <input type="text" id="alamat" />
 
         <label>Telepon</label>
-        <input type="text" id="telp">
+        <input type="text" id="telp" />
 
         <label>Email</label>
-        <input type="email" id="email">
+        <input type="email" id="email" />
 
         <div class="form-actions">
           <button type="button" onclick="tambahData()">Simpan</button>
@@ -198,7 +223,7 @@
   </main>
 
   <footer>
-    SIMAK-SD Develop By CV Mitra Utama Consultindo
+    &copy; SIMAK-SD Develop By CV Mitra Utama Consultindo
   </footer>
 
   <script>
