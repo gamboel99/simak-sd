@@ -2,148 +2,165 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Manajemen Aset Sekolah</title>
-  <link rel="stylesheet" href="style.css" />
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f0f8ff;
       margin: 0;
       padding: 0;
+      background-color: #f4f8fb;
     }
-    header {
-      background-color: #007e6a;
-      color: white;
-      padding: 1rem 2rem;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-right: 1rem;
-    }
-    main {
-      padding: 2rem;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-      background-color: white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 10px;
-      text-align: center;
-    }
-    th {
-      background-color: #007e6a;
-      color: white;
-    }
-    select {
-      padding: 5px;
-      width: 100%;
-    }
-    footer {
+    header, footer {
       background-color: #007e6a;
       color: white;
       padding: 1rem;
       text-align: center;
-      margin-top: 3rem;
+    }
+    .container {
+      max-width: 960px;
+      margin: 2rem auto;
+      background-color: white;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #007e6a;
+    }
+    form {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .full-width {
+      grid-column: span 2;
+    }
+    .button {
+      background-color: #007e6a;
+      color: white;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 1rem;
+    }
+    .button:hover {
+      background-color: #005f52;
+    }
+    .note {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #777;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Manajemen Aset Sekolah</h1>
-    <nav>
-      <a href="index.html">Beranda</a>
-      <a href="kepegawaian.html">Kepegawaian</a>
-      <a href="aset.html" class="active">Aset</a>
-      <a href="laporan.html">Laporan</a>
-      <a href="kontak.html">Kontak</a>
-    </nav>
-  </header>
 
-  <main>
-    <h2>Data Aset Sekolah</h2>
-    <p>Kelola daftar aset fisik sekolah di bawah ini. Setiap item bisa langsung diubah kategorinya, status, dan kondisinya.</p>
+<header>
+  <h1>Manajemen Aset Sekolah</h1>
+</header>
 
-    <table>
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>Nama Barang</th>
-          <th>Kategori</th>
-          <th>Status Kepemilikan</th>
-          <th>Keterangan</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>Proyektor Epson</td>
-          <td>
-            <select>
-              <option>Elektronik</option>
-              <option>Perabot</option>
-              <option>Alat Tulis</option>
-              <option>Lainnya</option>
-            </select>
-          </td>
-          <td>
-            <select>
-              <option>Milik Sekolah</option>
-              <option>Sewa</option>
-              <option>Pinjam</option>
-              <option>Hibah</option>
-            </select>
-          </td>
-          <td>
-            <select>
-              <option>Ada</option>
-              <option>Hilang</option>
-              <option>Rusak</option>
-              <option>Perlu Diperbaiki</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Laptop Dell Guru</td>
-          <td>
-            <select>
-              <option>Elektronik</option>
-              <option>Perabot</option>
-              <option>Alat Tulis</option>
-              <option>Lainnya</option>
-            </select>
-          </td>
-          <td>
-            <select>
-              <option>Milik Sekolah</option>
-              <option>Sewa</option>
-              <option>Pinjam</option>
-              <option>Hibah</option>
-            </select>
-          </td>
-          <td>
-            <select>
-              <option>Ada</option>
-              <option>Hilang</option>
-              <option>Rusak</option>
-              <option>Perlu Diperbaiki</option>
-            </select>
-          </td>
-        </tr>
-        <!-- Tambahkan baris aset lain di sini -->
-      </tbody>
-    </table>
-  </main>
+<div class="container">
+  <h2>Input Data Aset</h2>
+  <form id="form-aset">
+    <div>
+      <label for="idBarang">ID Barang</label>
+      <input type="text" id="idBarang" name="idBarang" required>
+    </div>
+    <div>
+      <label for="kategori">Kategori Barang</label>
+      <select id="kategori" name="kategori">
+        <option>Elektronik</option>
+        <option>Meubelair</option>
+        <option>Alat Tulis</option>
+        <option>Prasarana</option>
+      </select>
+    </div>
+    <div>
+      <label for="namaBarang">Nama Barang</label>
+      <input type="text" id="namaBarang" name="namaBarang" required>
+    </div>
+    <div>
+      <label for="status">Status</label>
+      <select id="status" name="status">
+        <option>Beli</option>
+        <option>Sewa</option>
+        <option>Pinjam</option>
+      </select>
+    </div>
+    <div>
+      <label for="umur">Umur Ekonomis (tahun)</label>
+      <input type="number" id="umur" name="umur" min="0" required>
+    </div>
+    <div>
+      <label for="hargaBeli">Harga Beli (Rp)</label>
+      <input type="number" id="hargaBeli" name="hargaBeli" min="0" required>
+    </div>
+    <div>
+      <label for="penyusutan">Penyusutan (Rp/Tahun)</label>
+      <input type="text" id="penyusutan" name="penyusutan" readonly>
+    </div>
+    <div>
+      <label for="keterangan">Keterangan</label>
+      <select id="keterangan" name="keterangan">
+        <option>Ada</option>
+        <option>Hilang</option>
+        <option>Rusak</option>
+        <option>Dalam Perbaikan</option>
+        <option>Dipinjam</option>
+      </select>
+    </div>
+    <div>
+      <label for="dipinjamOleh">Dipinjam Oleh</label>
+      <input type="text" id="dipinjamOleh" name="dipinjamOleh">
+    </div>
+    <div>
+      <label for="penanggungJawab">Penanggung Jawab</label>
+      <input type="text" id="penanggungJawab" name="penanggungJawab">
+    </div>
+    <div>
+      <label for="tanda">Perlu Peremajaan / Tambahan?</label>
+      <input type="text" id="tanda" name="tanda" readonly>
+    </div>
 
-  <footer>
-    <p>&copy; 2025 Sistem Informasi e-Sekolah</p>
-  </footer>
+    <div class="full-width">
+      <button type="button" class="button" onclick="hitung()">Hitung Penyusutan</button>
+    </div>
+  </form>
+
+  <div class="note">* Penyusutan = Harga Beli ÷ Umur Ekonomis</div>
+</div>
+
+<footer>
+  <p>© 2025 Sistem Kepegawaian & Manajemen Aset SD</p>
+</footer>
+
+<script>
+function hitung() {
+  const harga = parseFloat(document.getElementById("hargaBeli").value);
+  const umur = parseFloat(document.getElementById("umur").value);
+  const penyusutan = harga && umur ? (harga / umur).toFixed(2) : 0;
+  document.getElementById("penyusutan").value = penyusutan;
+
+  // Peremajaan otomatis
+  const tanda = umur <= 1 ? "BUTUH PENGADAAN BARU" : "Masih Layak Pakai";
+  document.getElementById("tanda").value = tanda;
+}
+</script>
+
 </body>
 </html>
