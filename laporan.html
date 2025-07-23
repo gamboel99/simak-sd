@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laporan | SIMAK SD</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Sistem Informasi Manajemen Kepegawaian & Aset Sekolah</h1>
+  </header>
+
+  <nav>
+    <ul class="menu">
+      <li><a href="index.html">Beranda</a></li>
+      <li><a href="kepegawaian.html">Kepegawaian</a></li>
+      <li><a href="manajemen.html">Manajemen Aset</a></li>
+      <li><a href="laporan.html" class="active">Laporan</a></li>
+      <li><a href="kontak.html">Kontak</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    <h2>Laporan Kepegawaian & Aset</h2>
+
+    <div class="form-grid">
+      <label for="jenisLaporan">Jenis Laporan:</label>
+      <select id="jenisLaporan">
+        <option value="kepegawaian">Kepegawaian</option>
+        <option value="aset">Aset</option>
+      </select>
+
+      <label for="rentangTanggal">Rentang Tanggal:</label>
+      <input type="date" id="tanggalAwal">
+      <input type="date" id="tanggalAkhir">
+
+      <button onclick="generateLaporan()">Tampilkan Laporan</button>
+      <button onclick="exportToExcel()" style="background:#007bff">Export Excel</button>
+    </div>
+
+    <div id="hasilLaporan">
+      <table id="tabelLaporan">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>Jabatan/Barang</th>
+            <th>Keterangan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="4">Belum ada data</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 SIMAK SD - Sistem Manajemen Kepegawaian dan Aset Sekolah</p>
+  </footer>
+
+  <script>
+    function generateLaporan() {
+      const jenis = document.getElementById('jenisLaporan').value;
+      const awal = document.getElementById('tanggalAwal').value;
+      const akhir = document.getElementById('tanggalAkhir').value;
+      const tbody = document.querySelector('#tabelLaporan tbody');
+
+      tbody.innerHTML = '';
+
+      for (let i = 1; i <= 5; i++) {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${i}</td>
+          <td>${jenis == 'kepegawaian' ? 'Guru ' + i : 'Barang ' + i}</td>
+          <td>${jenis == 'kepegawaian' ? 'Guru Kelas' : 'Inventaris'}</td>
+          <td>Data dari ${awal} sampai ${akhir}</td>
+        `;
+        tbody.appendChild(row);
+      }
+    }
+
+    function exportToExcel() {
+      alert('Fungsi Export ke Excel belum diaktifkan. Tambahkan library XLSX jika dibutuhkan.');
+    }
+  </script>
+</body>
+</html>
