@@ -1,170 +1,171 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #e8f0fb;
+  color: #222;
+  margin: 0;
+}
+
+header {
+  background-color: #002f6c; /* biru korpri */
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+nav {
+  background-color: #00529b;
+}
+
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.menu li {
+  margin: 0 10px;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  display: block;
+}
+
+.menu a:hover,
+.menu a.active {
+  background-color: #003f7f;
+  border-radius: 5px;
+}
+
+.container {
+  padding: 2rem;
+}
+
+form {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px;
+  text-align: left;
+  background-color: #fff;
+}
+
+footer {
+  background-color: #002f6c;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Data Kepegawaian - SIMAK SD</title>
+  <title>SIMAK SD - Kepegawaian</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f4f8fc;
-      color: #333;
-      margin: 0;
-      padding: 0;
-    }
-    header, footer {
-      background-color: #003366; /* biru Korpri */
-      color: white;
-      padding: 1rem 2rem;
-      text-align: center;
-    }
-    nav {
-      background-color: #005599;
-      display: flex;
-      justify-content: center;
-      padding: 0.5rem 0;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 1rem;
-      font-weight: bold;
-    }
-    h2 {
-      text-align: center;
-      margin-top: 1rem;
-    }
-    .container {
-      max-width: 1000px;
-      margin: 1rem auto;
-      background: white;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    label {
-      display: block;
-      margin-top: 1rem;
-    }
-    input, select {
-      width: 100%;
-      padding: 0.5rem;
-      margin-top: 0.3rem;
-    }
-    button {
-      margin-top: 1rem;
-      padding: 0.6rem 1.2rem;
-      background-color: #003366;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    table {
-      width: 100%;
-      margin-top: 2rem;
-      border-collapse: collapse;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 0.6rem;
-      text-align: left;
-    }
-    th {
-      background-color: #e6f0ff;
-    }
-    footer {
-      margin-top: 2rem;
-    }
-  </style>
 </head>
 <body>
   <header>
-    <h1>SIMAK - SD</h1>
-    <p>Sistem Informasi Manajemen Kepegawaian Sekolah Dasar</p>
+    <h1>Manajemen Kepegawaian</h1>
   </header>
-
   <nav>
-    <a href="index.html">Beranda</a>
-    <a href="kepegawaian.html">Kepegawaian</a>
-    <a href="manajemen-aset.html">Manajemen Aset</a>
-    <a href="laporan.html">Laporan</a>
-    <a href="kontak.html">Kontak</a>
+    <ul class="menu">
+      <li><a href="index.html">Beranda</a></li>
+      <li><a href="kepegawaian.html" class="active">Kepegawaian</a></li>
+      <li><a href="aset.html">Manajemen Aset</a></li>
+      <li><a href="laporan.html">Laporan</a></li>
+      <li><a href="kontak.html">Kontak</a></li>
+    </ul>
   </nav>
 
   <div class="container">
-    <h2>Form Data Kepegawaian</h2>
-    <form id="formKepegawaian">
-      <label>Nama:</label>
-      <input type="text" id="nama" required />
-      <label>NIP:</label>
-      <input type="text" id="nip" />
-      <label>Jabatan:</label>
-      <input type="text" id="jabatan" />
-      <label>Status Kepegawaian:</label>
-      <select id="status">
-        <option value="">Pilih Status</option>
+    <h2>Input Data Kepegawaian</h2>
+    <form id="pegawaiForm">
+      <input type="text" placeholder="Nama" required />
+      <input type="text" placeholder="NIP" />
+      <input type="text" placeholder="Jabatan" />
+      <input type="text" placeholder="Unit" />
+      <input type="date" placeholder="Tanggal Masuk" />
+      <select>
+        <option value="">Pilih Status Kepegawaian</option>
         <option value="PNS">PNS</option>
+        <option value="Honorer">Honorer</option>
         <option value="GTY">GTY</option>
         <option value="PKL">PKL</option>
         <option value="Magang">Magang</option>
-        <option value="Honorer">Honorer</option>
       </select>
-      <label>Tanggal Masuk:</label>
-      <input type="date" id="tanggalMasuk" />
-      <button type="submit">Simpan Data</button>
+      <input type="date" placeholder="Tanggal Resign (opsional)" />
+      <input type="text" placeholder="Prestasi" />
+      <input type="number" placeholder="Gaji" />
+      <input type="number" placeholder="Sisa Cuti" />
+      <input type="text" placeholder="Jumlah Keluarga" />
+      <input type="text" placeholder="Alamat" />
+      <input type="tel" placeholder="Telepon" />
+      <input type="email" placeholder="Email" />
+      <button type="submit">Simpan & Tambah</button>
     </form>
 
-    <h2>Data Kepegawaian</h2>
-    <table id="tabelKepegawaian">
+    <button onclick="unduhExcel()">Unduh Excel Workbook</button>
+
+    <table id="tabelPegawai">
       <thead>
         <tr>
-          <th>Nama</th>
-          <th>NIP</th>
-          <th>Jabatan</th>
-          <th>Status</th>
-          <th>Tanggal Masuk</th>
+          <th>Nama</th><th>NIP</th><th>Jabatan</th><th>Unit</th><th>Masuk</th><th>Status</th>
+          <th>Resign</th><th>Prestasi</th><th>Gaji</th><th>Sisa Cuti</th><th>Keluarga</th>
+          <th>Alamat</th><th>Telepon</th><th>Email</th>
         </tr>
       </thead>
       <tbody></tbody>
     </table>
-
-    <button onclick="exportToExcel()">Unduh Excel Workbook</button>
   </div>
 
   <footer>
-    <p>SIMAK-SD Develop By CV Mitra Utama Consultindo</p>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Garuda_Pancasila.svg/1200px-Garuda_Pancasila.svg.png" alt="Garuda" style="height: 50px; margin-top: 0.5rem;">
+    <p>&copy; e-Sekolah | SIMAK-SD Develop By CV Mitra Utama Consultindo</p>
   </footer>
 
-  <!-- SheetJS untuk export ke Excel Workbook -->
-  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/xlsx.mini.min.js"></script>
   <script>
-    document.getElementById("formKepegawaian").addEventListener("submit", function(e) {
+    const form = document.getElementById("pegawaiForm");
+    const tbody = document.querySelector("#tabelPegawai tbody");
+
+    form.addEventListener("submit", function(e) {
       e.preventDefault();
-      const nama = document.getElementById("nama").value;
-      const nip = document.getElementById("nip").value;
-      const jabatan = document.getElementById("jabatan").value;
-      const status = document.getElementById("status").value;
-      const tanggal = document.getElementById("tanggalMasuk").value;
-
-      const tbody = document.querySelector("#tabelKepegawaian tbody");
-      const row = tbody.insertRow();
-      row.insertCell(0).innerText = nama;
-      row.insertCell(1).innerText = nip;
-      row.insertCell(2).innerText = jabatan;
-      row.insertCell(3).innerText = status;
-      row.insertCell(4).innerText = tanggal;
-
-      document.getElementById("formKepegawaian").reset();
+      const data = Array.from(form.elements).slice(0, 14).map(el => el.value.trim());
+      const tr = document.createElement("tr");
+      data.forEach(val => {
+        const td = document.createElement("td");
+        td.textContent = val;
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+      form.reset();
     });
 
-    function exportToExcel() {
-      var table = document.getElementById("tabelKepegawaian");
-      var wb = XLSX.utils.book_new();
-      var ws = XLSX.utils.table_to_sheet(table);
-      XLSX.utils.book_append_sheet(wb, ws, "Kepegawaian");
+    function unduhExcel() {
+      const wb = XLSX.utils.book_new();
+      const rows = [["Nama", "NIP", "Jabatan", "Unit", "Masuk", "Status", "Resign", "Prestasi", "Gaji", "Sisa Cuti", "Keluarga", "Alamat", "Telepon", "Email"]];
+      document.querySelectorAll("#tabelPegawai tbody tr").forEach(tr => {
+        const row = Array.from(tr.children).map(td => td.textContent);
+        rows.push(row);
+      });
+      const ws = XLSX.utils.aoa_to_sheet(rows);
+      XLSX.utils.book_append_sheet(wb, ws, "Data Kepegawaian");
       XLSX.writeFile(wb, "data_kepegawaian.xlsx");
     }
   </script>
