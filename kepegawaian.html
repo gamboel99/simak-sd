@@ -1,241 +1,188 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kepegawaian | SIMAK-SD</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Data Kepegawaian</title>
   <style>
-    :root {
-      --biru-korpri: #003366;
-      --biru-korpri-tua: #002244;
-    }
-
     body {
       font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f8ff;
+      color: #003366;
       margin: 0;
-      background-color: #fff;
-      color: #333;
+      padding: 0;
     }
 
     header {
-      background: linear-gradient(to right, var(--biru-korpri), #005599);
+      background-color: #002f6c;
       color: white;
-      padding: 1.5rem;
+      padding: 1rem;
       text-align: center;
-      position: relative;
-    }
-
-    header::after {
-      content: "";
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/97/Garuda_Pancasila.svg');
-      background-size: 60px;
-      background-repeat: no-repeat;
-      background-position: top right;
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      width: 60px;
-      height: 60px;
-      opacity: 0.2;
-    }
-
-    nav {
-      background-color: var(--biru-korpri);
-      text-align: center;
-    }
-
-    nav a {
-      color: white;
-      padding: 1rem 1.5rem;
-      display: inline-block;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a:hover,
-    nav a.active {
-      background-color: var(--biru-korpri-tua);
-    }
-
-    .download-link {
-      display: inline-block;
-      margin: 1rem;
-      background-color: var(--biru-korpri);
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      text-decoration: none;
-    }
-
-    .download-link:hover {
-      background-color: var(--biru-korpri-tua);
     }
 
     main {
       padding: 2rem;
-      max-width: 1200px;
-      margin: auto;
     }
 
-    .form-container {
-      background: #fff;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    h2 {
+      color: #002f6c;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
     }
 
     label {
-      display: block;
-      margin-top: 1rem;
       font-weight: bold;
     }
 
-    input,
-    select {
-      width: 100%;
+    input, select, textarea {
       padding: 0.5rem;
-      margin-top: 0.25rem;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      border-radius: 6px;
+      width: 100%;
     }
 
-    .form-actions {
-      margin-top: 1.5rem;
-      text-align: right;
-    }
-
-    .form-actions button {
-      padding: 0.7rem 1.5rem;
-      background-color: var(--biru-korpri);
-      color: white;
+    button {
+      padding: 0.6rem 1.2rem;
       border: none;
-      border-radius: 5px;
-      font-weight: bold;
+      border-radius: 6px;
+      background-color: #004b8d;
+      color: white;
       cursor: pointer;
+      font-weight: bold;
+      margin-top: 1rem;
     }
 
-    .form-actions button:hover {
-      background-color: var(--biru-korpri-tua);
+    button:hover {
+      background-color: #003366;
     }
 
     table {
       width: 100%;
-      border-collapse: collapse;
       margin-top: 2rem;
+      border-collapse: collapse;
+      font-size: 14px;
     }
 
-    th,
-    td {
-      border: 1px solid #ddd;
-      padding: 0.75rem;
+    table, th, td {
+      border: 1px solid #aaa;
+    }
+
+    th, td {
+      padding: 8px;
       text-align: left;
     }
 
     th {
-      background-color: var(--biru-korpri);
-      color: white;
-    }
-
-    footer {
-      background-color: var(--biru-korpri-tua);
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 4rem;
+      background-color: #d9e9ff;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Sistem Informasi Manajemen Kepegawaian & Aset Sekolah (SIMAK-SD)</h1>
-    <p>Manajemen Kepegawaian Sekolah</p>
+    <h1>Sistem Kepegawaian - e-Sekolah</h1>
   </header>
 
-  <nav>
-    <a href="index.html">Beranda</a>
-    <a href="kepegawaian.html" class="active">Kepegawaian</a>
-    <a href="manajemen-aset.html">Manajemen Aset</a>
-    <a href="laporan.html">Laporan</a>
-    <a href="kontak.html">Kontak</a>
-  </nav>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<script>
-  const dataPegawai = [];
+  <main>
+    <h2>Form Input Data Pegawai</h2>
+    <form id="formKepegawaian">
+      <div><label>Nama</label><input type="text" id="nama" required></div>
+      <div><label>NIP</label><input type="text" id="nip" required></div>
+      <div><label>Jabatan</label><input type="text" id="jabatan"></div>
+      <div><label>Unit Kerja</label><input type="text" id="unit"></div>
+      <div><label>Tanggal Masuk</label><input type="date" id="masuk"></div>
+      <div><label>Status</label><select id="status"><option>PNS</option><option>Honorer</option><option>Kontrak</option></select></div>
+      <div><label>Tanggal Resign</label><input type="date" id="resign"></div>
+      <div><label>Prestasi</label><input type="text" id="prestasi"></div>
+      <div><label>Gaji</label><input type="number" id="gaji"></div>
+      <div><label>Jatah Cuti</label><input type="number" id="cuti" value="12"></div>
+      <div><label>Cuti Terpakai</label><input type="number" id="terpakai" value="0"></div>
+      <div><label>Jumlah Keluarga</label><input type="number" id="keluarga"></div>
+      <div><label>Alamat</label><textarea id="alamat"></textarea></div>
+      <div><label>Telepon</label><input type="text" id="telp"></div>
+      <div><label>Email</label><input type="email" id="email"></div>
+    </form>
+    <button onclick="tambahData()">Simpan Data</button>
+    <button onclick="unduhExcel()">Unduh Excel</button>
 
-  function tambahData() {
-    const nama = document.getElementById('nama').value;
-    const nip = document.getElementById('nip').value;
-    const jabatan = document.getElementById('jabatan').value;
-    const unit = document.getElementById('unit').value;
-    const masuk = document.getElementById('masuk').value;
-    const status = document.getElementById('status').value;
-    const resign = document.getElementById('resign').value;
-    const prestasi = document.getElementById('prestasi').value;
-    const gaji = document.getElementById('gaji').value;
-    const cuti = parseInt(document.getElementById('cuti').value);
-    const terpakai = parseInt(document.getElementById('terpakai').value);
-    const sisaCuti = cuti - terpakai;
-    const keluarga = document.getElementById('keluarga').value;
-    const alamat = document.getElementById('alamat').value;
-    const telp = document.getElementById('telp').value;
-    const email = document.getElementById('email').value;
+    <table id="tabelKepegawaian">
+      <thead>
+        <tr>
+          <th>Nama</th><th>NIP</th><th>Jabatan</th><th>Unit</th><th>Masuk</th><th>Status</th><th>Resign</th><th>Prestasi</th><th>Gaji</th><th>Sisa Cuti</th><th>Keluarga</th><th>Alamat</th><th>Telepon</th><th>Email</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
 
-    const data = {
-      Nama: nama,
-      NIP: nip,
-      Jabatan: jabatan,
-      "Unit Kerja": unit,
-      "Tanggal Masuk": masuk,
-      Status: status,
-      "Tanggal Resign": resign,
-      Prestasi: prestasi,
-      Gaji: gaji,
-      "Sisa Cuti": sisaCuti,
-      "Jumlah Keluarga": keluarga,
-      Alamat: alamat,
-      Telepon: telp,
-      Email: email
-    };
+  <script>
+    const dataPegawai = [];
 
-    dataPegawai.push(data);
+    function tambahData() {
+      const form = document.getElementById("formKepegawaian");
+      const data = {
+        Nama: form.nama.value,
+        NIP: form.nip.value,
+        Jabatan: form.jabatan.value,
+        Unit: form.unit.value,
+        Masuk: form.masuk.value,
+        Status: form.status.value,
+        Resign: form.resign.value,
+        Prestasi: form.prestasi.value,
+        Gaji: form.gaji.value,
+        SisaCuti: form.cuti.value - form.terpakai.value,
+        Keluarga: form.keluarga.value,
+        Alamat: form.alamat.value,
+        Telepon: form.telp.value,
+        Email: form.email.value
+      };
 
-    const tbody = document.getElementById('tabelKepegawaian').querySelector('tbody');
-    const row = tbody.insertRow();
-    row.innerHTML = `
-      <td>${nama}</td>
-      <td>${nip}</td>
-      <td>${jabatan}</td>
-      <td>${unit}</td>
-      <td>${masuk}</td>
-      <td>${status}</td>
-      <td>${resign}</td>
-      <td>${prestasi}</td>
-      <td>${gaji}</td>
-      <td>${sisaCuti}</td>
-      <td>${keluarga}</td>
-      <td>${alamat}</td>
-      <td>${telp}</td>
-      <td>${email}</td>
-    `;
+      dataPegawai.push(data);
 
-    document.getElementById('formKepegawaian').reset();
-  }
-
-  function unduhExcel() {
-    if (dataPegawai.length === 0) {
-      alert("Belum ada data untuk diunduh.");
-      return;
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${data.Nama}</td>
+        <td>${data.NIP}</td>
+        <td>${data.Jabatan}</td>
+        <td>${data.Unit}</td>
+        <td>${data.Masuk}</td>
+        <td>${data.Status}</td>
+        <td>${data.Resign}</td>
+        <td>${data.Prestasi}</td>
+        <td>${data.Gaji}</td>
+        <td>${data.SisaCuti}</td>
+        <td>${data.Keluarga}</td>
+        <td>${data.Alamat}</td>
+        <td>${data.Telepon}</td>
+        <td>${data.Email}</td>
+      `;
+      document.querySelector("#tabelKepegawaian tbody").appendChild(row);
+      form.reset();
     }
 
-    const worksheet = XLSX.utils.json_to_sheet(dataPegawai);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Data Pegawai");
+    function unduhExcel() {
+      if (dataPegawai.length === 0) {
+        alert("Belum ada data pegawai!");
+        return;
+      }
 
-    XLSX.writeFile(workbook, "data_kepegawaian.xlsx");
-  }
-</script>
+      const header = Object.keys(dataPegawai[0]);
+      const rows = dataPegawai.map(obj => header.map(k => obj[k]));
+
+      let csvContent = "data:text/csv;charset=utf-8," + header.join(",") + "\n" +
+                       rows.map(e => e.join(",")).join("\n");
+
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", "data_kepegawaian.csv");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  </script>
+</body>
+</html>
